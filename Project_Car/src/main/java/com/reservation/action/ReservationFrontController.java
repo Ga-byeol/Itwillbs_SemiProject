@@ -2,6 +2,7 @@ package com.reservation.action;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +16,7 @@ public class ReservationFrontController extends HttpServlet{
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String requestURI = request.getRequestURI();
-		System.out.println(" Controller : requestUIR = "+requestURI);
+		System.out.println(" Controller : requestURI = "+requestURI);
 		String ctxPath = request.getContextPath();
 		System.out.println(" Controller : ctxPath = "+ctxPath);
 		String command = requestURI.substring(ctxPath.length());
@@ -24,8 +25,19 @@ public class ReservationFrontController extends HttpServlet{
 		Action action = null;
 		ActionForward forward = null;
 		
-		if(command.equals("")) {
-			
+		if(command.equals("/ReservationMain.res")) {
+			forward = new ActionForward();
+			forward.setPath("./reservation/ReservationMain.jsp");
+			forward.setRedirect(false);
+		}
+		
+		if(forward!=null) {
+			if(forward.isRedirect()) {
+				response.sendRedirect(forward.getPath());
+			} else {
+				RequestDispatcher dis = request.getRequestDispatcher(forward.getPath());
+				dis.forward(request, response);
+			}
 		}
 	}
 	@Override
