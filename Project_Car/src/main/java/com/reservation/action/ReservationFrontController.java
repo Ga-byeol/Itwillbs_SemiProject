@@ -29,6 +29,17 @@ public class ReservationFrontController extends HttpServlet{
 			forward = new ActionForward();
 			forward.setPath("./reservation/ReservationMain.jsp");
 			forward.setRedirect(false);
+		} else if(command.equals("/PaymentForm.res")) {
+			forward = new ActionForward();
+			forward.setPath("./payment/PaymentForm.jsp");
+			forward.setRedirect(false);
+		} else if(command.equals("/PaymentPro.res")) {
+			action = new PaymentPro();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		if(forward!=null) {
