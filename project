@@ -1,1 +1,17 @@
-하이
+repository를 Fork하는 방법
+1. 오른쪽 위에 Fork를 누른다.
+2. 자기 아이디를 누른다.
+3. 초록색 버튼 누른다.
+4. Fork 완료~
+
+Fork하면 자신의 repository에 같은 repository가 생김.
+그 곳에 파일을 업로드하거나 수정 후 Pull request해서 원본 repository에 업로드 해줄거임.
+
+Pull request방법
+나의 repository에 변경사항이 있고, 그것을 원본 repository에 올리고 싶으면
+1. 상단 탭에 있는 Issues 와 Actions 사이의 Pull request 탭을 클릭.
+2. new create pull request를 함. (새로운 풀리퀘스트 생성하기)
+3. 변경사항 확인 후 초록버튼 클릭
+4. 또 클릭
+5. 원본 repository의 주인이 확인 후 merge해서 합칠 때까지 기다리기.
+6. 끝~
