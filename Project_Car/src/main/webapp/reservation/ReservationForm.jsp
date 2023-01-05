@@ -1,16 +1,13 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="com.reservation.db.ReservationDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>reservation/ReservationMain.jsp</title>
-<script>
-	document.addEventListener('scroll', function() {
-		var currentScrollValue = document.documentElement.scrollTop;
-		console.log('currentScrollValue is ' + currentScrollValue);
-	});
-</script>
+<title>reservation/ReservationForm.jsp</title>
+
 <style type="text/css">
 .test {
 	position: absolute;
@@ -24,10 +21,12 @@ body {
 	height: 100%;
 	overflow: auto;
 }
+
 </style>
 </head>
 <%
-
+// ReservationDTO res_dto = (ReservationDTO)request.getAttribute("res_dto");
+ReservationDTO res_dto = new ReservationDTO();
 %>
 <body>
 	<form action="./PaymentForm.res" method="post">
@@ -59,16 +58,15 @@ body {
 					<th>총 시간</th>
 				</tr>
 				<tr>
-					<th><%=1%></th>
-					<th><%=2%></th>
-					<th><%=3%></th>
+					<th><%=res_dto.getRes_stime()%></th>
+<%-- 					<th><%=new SimpleDateFormat("yyyy년 MM월 dd일 HH시 mm분 ss초").parse(res_dto.getRes_stime())%></th> --%>
+					<th><%=res_dto.getRes_time()%></th>
 				</tr>
-			</table>
 			</table>
 			<table border="1">
 				<tr>
 					<th>결제가격</th>
-					<th><%=1123123123%></th>
+					<th><%=res_dto.getRes_time()%></th> <%-- 차 가격 * 이용 시간 --%>
 				</tr>
 			</table>
 			<input type="submit" value="예약하기">

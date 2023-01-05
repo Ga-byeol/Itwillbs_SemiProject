@@ -17,9 +17,9 @@ public class ReservationPro implements Action{
 		// 예약정보 받아오기
 		// 예약 시간 받아서 반납 일자 계산
 		ActionForward forward = new ActionForward();
-		forward.setPath("./reservation/reservationForm.res");
+		forward.setPath("./ReservationForm.res");
 		forward.setRedirect(true);
-		return null;
+		return forward;
 	}
 	
 }
