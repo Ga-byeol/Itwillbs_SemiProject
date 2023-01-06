@@ -8,7 +8,7 @@
 <body>
 <%
 	//index.jsp
-	response.sendRedirect("./ReservationMain.res");
+	response.sendRedirect("./CarInsertForm.ci");
 %>
 </body>
 </html>

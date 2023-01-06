@@ -1,0 +1,250 @@
+@charset "UTF-8";
+
+html, body {margin: 0 auto; padding: 0 auto;}
+#wrapper {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-areas: "carMain carMain carMain"
+						 "info info summ"
+						 "review review review";
+	width:100%;
+	height: 100vh;
+	position: relative;
+}
+
+#wrapper > div {border: 1px solid;}
+
+#wrapper > div:nth-child(1) {
+	grid-area: carMain;
+	display: grid;
+	grid-template-columns: 65% 35%;
+	padding-top: 100px;
+    background-color: #EFF2F7;
+}
+#wrapper > div:nth-child(2) {
+	grid-area: info;
+}
+#wrapper > div:nth-child(3) {
+	grid-area: summ;
+}
+#wrapper > div:nth-child(4) {
+	grid-area: review;
+}
+
+.carMain_car_img {
+	position: relative;
+	padding: 100px 0 50px;
+	height: auto;
+	text-align: center;
+	margin-left:500px;
+	transform: scale(0.9);
+	animation: carMove 1s forwards linear;
+}
+@keyframes carMove {
+	100% {margin-left:0;transform: scale(1.05);}
+}
+.carMain_car_img > img {
+	width: 600px;
+}
+.carMain_summ {
+	position:relative;
+}
+.carMain_summ > div {
+	position: absolute;
+	top: 50%;
+	left:0;
+	transform: translateY(-50%);
+	width: 300px;
+	border-radius: 25px;
+	background: white;
+	padding: 70px 30px 30px 30px;
+}
+.carMain_summ > div > h2 {
+	margin-top: 10px; 
+}
+.carMain_summ > div > h2 + p {
+	margin-bottom: 60px;
+}
+.carMain_summ > div > label[for="carMainBtn"] p {
+	width:100%;
+	padding: 15px 0;
+	margin: 10px auto;
+	border-radius: 30px;
+	background: #EFF2F7;
+	text-align: center;
+}
+.carMain_summ > div input {display: none;}
+.carMain_summ label[for="likeBtn"] {
+	position: absolute;
+	top: 10px;
+	right: 20px;
+	font-size:40px;
+	color: #EFF2F7;
+	cursor: pointer;
+}
+.carMain_summ label[for="likeBtn"]:after {
+	content:'♥';
+	font-size:0;
+}
+#likeBtn:checked ~ label {font-size:0;}
+#likeBtn:checked ~ label[for="likeBtn"]:after{
+	color:red;
+	font-size: 40px;
+}
+
+/* 차 이미지 정보 요약 */
+.carMain_detail {
+	position: relative;
+}
+.carMain_detail > nav {
+	position: sticky;
+	top:60px;
+	left:0;
+	z-index: 1;
+	width:80%;
+	display:flex;
+	justify-content: center;
+	padding: 20px 0;
+	margin-left: 90px;
+	margin-top: 30px;
+	border-radius: 100px;
+}
+
+.carMain_detail > nav > a {
+	padding: 10px 20px;
+	margin: 0 10px;
+	border: none;
+	border-radius: 20px;
+	font-size: 15px;
+	transition: .3s;
+	text-decoration: none;
+	color: black;
+	background: rgba(239,242,247);
+	box-shadow: 0 1px 5px rgba(0,0,0,.15);
+}
+.carMain_detail > nav > a:hover {
+	background: black;
+	transform: scale(1.05);
+	color: white;
+}
+
+.carMain_detail > .details_layer {
+	margin: 30px 60px 60px;
+	padding: 0 30px;
+	border: 1px solid black;
+	border-radius: 30px;
+}
+
+.carMain_detail > .details_layer > .d_l_title {
+	padding: 30px 30px;
+	color: gray;
+}
+
+.carMain_detail > .details_layer > .d_l_title > span {
+	display: block;
+	margin-bottom: 30px;
+	font-size: 30px;
+}
+
+.carMain_detail > .details_layer > div[class^="d_layer"] {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+}
+
+.carMain_detail > .details_layer > .d_layer1 > p {
+	display: grid;
+	position: relative;
+	margin: 10px;
+	height: 100px;
+	border: 1px solid gray;
+	border-radius: 20px;
+	justify-content: center;
+	align-items: center;
+}
+.carMain_detail > .details_layer > .d_layer1 > p > label {
+	position: absolute;
+	top:8px;
+	right: 10px;
+}
+.carMain_detail > .details_layer > div[class^="d_layer"]:not(div:last-of-type) {
+	padding-bottom: 50px;
+	border-bottom: 1px solid gray;
+}
+
+/* 차 정보 세부사항 박스 */
+.car_detail_box {
+	position:sticky;
+	top:0;
+	padding: 100px 20px 200px;
+}
+/* 달력 */
+.month_box {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	position: abolute; 
+	margin:30px 0;
+	height:200px;
+}
+.month_box > div {
+	border: solid 1px;
+	height:100%;
+}
+/* 달력 끝 */
+
+.car_detail_box > ul {
+	border: 1px solid;
+	list-style: none;
+	height: 400px;
+	overflow-y: scroll;
+}
+.car_detail_box > ul > li {padding:50px 0;}
+.car_detail_box > ul > li > div {display: flex;position:relative;}
+.car_detail_box > ul > li > div > div {
+	display: block;
+	position:absolute;
+	right:30px;
+	text-align: right;
+}
+.car_detail_box > ul > li > div > div > span {display: block;}
+
+.car_detail_box > .book_box {
+	position: absolute;
+	left:0;
+	width: 100%;
+}
+.car_detail_box > .book_box > button {
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%);
+	width: 80%;
+	padding: 30px 0;
+	margin-top: 20px;
+}
+
+#wrapper > div:last-child {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	padding:80px 30px 0;
+}
+.car_review_img {
+	margin: 0 10px;
+	height:200px;
+	border: 1px solid;
+}
+.car_review_cont {
+	border: 1px solid;
+	margin: 10px 10px;
+}
+.car_review_user {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	border: 1px solid;
+	margin: 0 10px 100px;
+}
+
+
+
+
+
+
+

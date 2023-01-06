@@ -1,0 +1,100 @@
+@charset "UTF-8";
+html, body {
+	position: relative;
+	padding:0;
+	margin:0;
+}
+form {
+	display:grid;
+	position:fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background: rgba(255,255,255,.3);
+	backdrop-filter: blur(5px);
+	border-radius: 25px;
+	box-shadow:  -.5px -.5px 20px rgba(0,0,0,.1),
+				 0 0 30px rgba(0,0,0,.1),
+				 2px 2px 10px rgba(0,0,0,.2),
+				 2px 2px 20px rgba(0,0,0,.2);
+	padding: 10% 2% 5%;
+	text-align:center;
+}
+form:after {
+	content:'';
+	position: absolute;
+	top: 10%;
+	left: 50%;
+	transform: translateX(-50%);
+	width:100%;
+	height:100px;
+	background:  url('https://www.carlogos.org/car-logos/bentley-logo-1400x800.png') no-repeat top / 100px;
+}
+
+.video-bg {
+	position: relative;
+    top: 0;
+    left: 50%;
+    width: 100%;
+    min-height: 100vh;
+    object-fit: cover;
+    transform: translateX(-50%);
+    z-index: -2;
+}
+
+.bg_blur {
+	position: fixed;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	backdrop-filter: blur(2px);
+}
+.bg_blur {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width:100%;
+	height:100%;
+	background: rgba(0,0,0,.4);
+	z-index:-1;
+}
+.input {
+	background: transparent !important;
+	border-radius:25px;
+	padding: 10px 5px;
+	border: none;
+	box-shadow: inset -2px -2px 2px rgba(255,255,255,.2),
+				inset -.5px -.5px 5px rgba(255,255,255,.1),
+				inset 0 0 1px rgba(255,255,255,.2),
+				inset 2px 2px 2px rgba(0,0,0,.1),
+				inset 2px 2px 3px rgba(0,0,0,.3);
+}
+input::placeholder {
+	background: transparent;
+	color: #999999;
+	text-align: center;
+}
+input[type="submit"] {
+	padding: 10px 100px;
+	border-radius: 30px;
+	margin-bottom:10px;
+	background: linear-gradient(to bottom right, #5c5c5c, black);
+	color: white;
+	border: none;
+	box-shadow: -.2px -.5px 5px rgba(255,255,255),
+				0 0 3px rgba(255,255,255,.1),
+				2px 2px 5px rgba(0,0,0,.1),
+				2px 2px 7px rgba(0,0,0,.2);
+	cursor: pointer;
+	font-weight: bold;
+}
+input[id="sign"] {
+	display:none;
+}
+label[for="sign"] {
+	color: #999999;
+	cursor: pointer;
+	font-size:12px;
+}
+* {font-family: 'Yantramanav', sans-serif;}
