@@ -18,4 +18,13 @@
 		<servlet-name>ReservationFrontController</servlet-name>
 		<url-pattern>*.res</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+	<servlet-name>CarInfoFrontController</servlet-name>
+	<servlet-class>com.car.action.CarInfoFrontController</servlet-class>
+</servlet>
+	<servlet-mapping>
+		<servlet-name>CarInfoFrontController</servlet-name>
+		<url-pattern>*.ci</url-pattern>
+	</servlet-mapping>
 </web-app>
