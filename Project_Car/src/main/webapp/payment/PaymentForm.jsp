@@ -18,13 +18,19 @@
 		  IMP.request_pay({
 	          pg: "html5_inicis",
 	          pay_method: "card",
-	          merchant_uid: "ORD20180131-0000011", // 주문번호 car_ + ~
+	          merchant_uid: "car_" + "현재시간", // 주문번호 car_ + ~
 	          name: "CAR", // 상호명
-	          amount: 64900, // 결제금액	
-	          buyer_name: "홍길동", // 결제자 이름
+	          amount: ${'.price'}, // 결제금액	
+	          buyer_name: "${sessionScope.name}", // 결제자 이름
 	      }, function (rsp) {
 	          if (rsp.success) {
-	              alert("결제성공");
+	              $.ajax{
+	            	  url:; // 예약 db처리 할 경로
+	            	  data:;// 예약에 들어갈 정보들
+	            	  success:function(data){
+	            		  location.href=""; // 내 예약 목록
+	            	  }
+	              };
 	          } else {
 	        	  alert("결제에 실패하였습니다.");
 	          }
@@ -66,15 +72,15 @@
 			<th>총 시간</th>
 		</tr>
 		<tr>
-			<th><%=1%></th>
+			<th><%=res_dto.getRes_stime()%></th>
 			<th><%=2%></th>
-			<th><%=3%></th>
+			<th><%=res_dto.getRes_time()%></th>
 		</tr>
 	</table>
 	<table border="1">
 	<tr>
 	<th>결제가격</th>
-	<th><%=1123123123 %></th>
+	<div class="price"><th><%=res_dto.getRes_time() %></th></div> <!-- * carinfo.price() -->
 	</tr>
 	</table>
 	<input type="button" value="결제하기" id="order">
