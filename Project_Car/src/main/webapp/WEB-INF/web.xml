@@ -27,4 +27,22 @@
 		<servlet-name>CarInfoFrontController</servlet-name>
 		<url-pattern>*.ci</url-pattern>
 	</servlet-mapping>
+	
+		<servlet>
+    <servlet-name>QnaFrontController</servlet-name>
+    <servlet-class>com.qna.action.QnaFrontController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>QnaFrontController</servlet-name>
+    <url-pattern>*.qn</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>QnaCommFrontController</servlet-name>
+    <servlet-class>com.qna_comm.action.QnaCommFrontController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>QnaCommFrontController</servlet-name>
+    <url-pattern>*.co</url-pattern>
+  </servlet-mapping>
 </web-app>
