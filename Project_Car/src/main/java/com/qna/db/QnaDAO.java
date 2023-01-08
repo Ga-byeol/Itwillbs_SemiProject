@@ -225,6 +225,52 @@ public class QnaDAO {
 		return count;
 	}
 	
-	
+	public int getNextQna(int qna_num) {
+		int nextIndex=0;
+		try {
+			con = getConnection();
+			String sql="select *\r\n"
+					+ "from (select *\r\n"
+					+ "	       from qna\r\n"
+					+ "	      where qna_num between ? and (select max(qna_num)\r\n"
+					+ "									     from qna)\r\n"
+					+ "order by qna_num limit 2) A\r\n"
+					+ "order by A.qna_num desc limit 1;";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, qna_num);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				nextIndex=rs.getInt("qna_num");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return nextIndex;
+	}
+	public int getBeforeQna(int qna_num) {
+		int beforeIndex=0;
+		try {
+			con = getConnection();
+			String sql="select *\r\n"
+					+ "from (select *\r\n"
+					+ "	    from qna\r\n"
+					+ "	   where qna_num between (select min(qna_num) from qna) and ?\r\n"
+					+ "order by qna_num desc limit 2) A\r\n"
+					+ "order by A.qna_num limit 1";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, qna_num);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				beforeIndex=rs.getInt("qna_num");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return beforeIndex;
+	}
 	
 }
