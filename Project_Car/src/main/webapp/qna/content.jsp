@@ -1,3 +1,4 @@
+<%@page import="com.itwillbs.qna.db.QnaDAO"%>
 <%@page import="com.itwillbs.qna.db.QnaDTO"%>
 <%@page import="com.itwillbs.qna_comm.db.QnaCommDTO"%>
 <%@page import="com.itwillbs.qna_comm.db.QnaCommDAO"%>
@@ -30,6 +31,7 @@
 <body>
 <%
 QnaDTO dto=(QnaDTO)request.getAttribute("dto");
+QnaDAO dao=new QnaDAO();
 int qna_num=dto.getQna_num();
 String filepath = request.getSession().getServletContext().getRealPath("qna_images");
 %>
@@ -56,7 +58,7 @@ String filepath = request.getSession().getServletContext().getRealPath("qna_imag
 	</tr>
 	<tr>
 		<td colspan="2">
-		<div height="500px">
+		<div>
 			<% 
 			if(dto.getQna_image() != null){
 			%>
@@ -74,7 +76,7 @@ String id=(String)session.getAttribute("id");
 			if(dto.getUser_id().equals(id) || id.equals("admin")){
 %>
 				<div>
-					<form action="./QnaDelete.qn" method="get" class="deleteQna" align ="right" align="bottom">
+					<form action="./QnaDelete.qn" method="get" class="deleteQna" align ="right">
 						<input type="button" value="글수정" class="update"
 						onclick="location.href='QnaUpdateForm.qn?qna_num=<%=dto.getQna_num()%>&qna_index=<%=dto.getQna_index()%>'">
 						<input type="hidden" name="qna_num" value="<%=dto.getQna_num()%>">
@@ -94,20 +96,15 @@ String id=(String)session.getAttribute("id");
 			
 			QnaCommDAO dao2 = new QnaCommDAO();
 			int pageSize=10;
-			System.out.println("pageSize="+pageSize);
 			String pageNum=request.getParameter("pageNum");
 			if(pageNum==null){
 				pageNum="1";
 			}
-			System.out.println("pageNum="+pageNum);
 			int currentPage=Integer.parseInt(pageNum);
 			int startRow=(currentPage-1)*pageSize+1;
-			System.out.println("startRow="+startRow);
 			int endRow=startRow+pageSize-1;
-			System.out.println("endRow="+endRow);
 			List<QnaCommDTO> commList = dao2.getCommList(startRow,pageSize,qna_num);
 			int count=dao2.getQnaCommCount(qna_num);
-			System.out.println("count="+count);
 			%>
 	<table>
 		<tr>
@@ -159,7 +156,6 @@ System.out.println("pageCount="+pageCount);
 if(endPage > pageCount) {
 	endPage=pageCount;
 }
-System.out.println("endPage="+endPage);
 // 10페이지 이전
 if(startPage>pageBlock) {
 	%>
@@ -202,11 +198,11 @@ if(id!=null) {
 		<%
 		if(id.equals("admin")) { 
 		%>
-		<textarea name="comm_content" rows="5" cols="50" maxlength="1500"><%=dto.getUser_id() %>님 문의 감사합니다. </textarea>
+		<textarea name="comm_content" rows="5" cols="70" maxlength="1500"><%=dto.getUser_id() %>님 문의 감사합니다. </textarea>
 			<%
 			}else {
 			%>
-		<textarea name="comm_content" rows="5" cols="50" maxlength="1500"></textarea>
+		<textarea name="comm_content" rows="5" cols="70" maxlength="1500"></textarea>
 			<%
 			} 
 			%>
@@ -214,12 +210,31 @@ if(id!=null) {
 		</form>
 		</td>
 	</tr>
+	<%=dto.getQna_secret().equals("Y") ? "checked='checked'" : "" %>
 <%
 	}
 }
+int beforeIndex = dao.getBeforeQna(dto.getQna_num());
+int nextIndex = dao.getNextQna(dto.getQna_num());
 %>
 </table>
 <br>
-<input type="button" value="QnA목록" onclick="location.href='./QnaList.qn'">
+<% 
+if(beforeIndex!=dto.getQna_num()) {
+%>
+	<a href="QnaContent.qn?qna_num=<%=beforeIndex%>&qna_index=<%=dto.getQna_index()-1 %>">이전글</a>
+<%
+} 
+%>
+<% 
+if(nextIndex!=dto.getQna_num()) {
+%>
+	| <a href="QnaContent.qn?qna_num=<%=nextIndex%>&qna_index=<%=dto.getQna_index()+1 %>">다음글</a>
+<%
+} 
+%>
+<div>
+	<input type="button" value="QnA목록" onclick="location.href='./QnaList.qn'">
+</div>
 </body>
 </html>
