@@ -9,10 +9,10 @@
 <head>
 <meta charset="UTF-8">
 <title>list.jsp</title>
-<link rel="stylesheet" href="./css/basic.css"/>
+<link rel="stylesheet" href="./header/basic.css"/>
 </head>
 <body>
-<jsp:include page="../css/basic.jsp"></jsp:include>
+<jsp:include page="../css/header.jsp"></jsp:include>
 <%
 String id=(String)session.getAttribute("id");
 List<QnaDTO> qnaList=(List<QnaDTO>)request.getAttribute("qnaList");

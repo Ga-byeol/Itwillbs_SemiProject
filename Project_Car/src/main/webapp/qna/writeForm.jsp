@@ -17,10 +17,10 @@ function check() {
 	}
 }
 </script>
-<link rel="stylesheet" href="./css/basic.css"/>
+<link rel="stylesheet" href="./header/basic.css"/>
 </head>
 <body>
-<jsp:include page="../css/basic.jsp"></jsp:include>
+<jsp:include page="../css/header.jsp"></jsp:include>
 <%
 //세션값 가져오기
 String id=(String)session.getAttribute("id");

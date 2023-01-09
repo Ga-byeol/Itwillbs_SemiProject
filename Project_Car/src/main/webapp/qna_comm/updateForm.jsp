@@ -6,10 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="./css/basic.css"/>
+<link rel="stylesheet" href="./css/header.css"/>
 </head>
 <body>
-<jsp:include page="../css/basic.jsp"></jsp:include>
+<jsp:include page="../css/header.jsp"></jsp:include>
 <%
 QnaCommDTO dto=(QnaCommDTO)request.getAttribute("dto");
 String id=(String)session.getAttribute("id");

@@ -10,7 +10,7 @@
 <head>
 <meta charset="UTF-8">
 <title>content.jsp</title>
-<link rel="stylesheet" href="./css/basic.css"/>
+<link rel="stylesheet" href="./css/header.css"/>
 <script type="text/javascript" src="./script/jquery-3.6.3.js"></script>
 <script type="text/javascript">
  	$(document).ready(function() {
@@ -30,7 +30,7 @@
 </script>
 </head>
 <body>
-	<jsp:include page="../css/basic.jsp"></jsp:include>
+	<jsp:include page="../css/header.jsp"></jsp:include>
 <%
 QnaDTO dto=(QnaDTO)request.getAttribute("dto");
 QnaDAO dao=new QnaDAO();
