@@ -1,4 +1,4 @@
-<%@page import="com.itwillbs.qna_comm.db.QnaCommDTO"%>
+<%@page import="com.qna_comm.db.QnaCommDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -6,8 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="./css/basic.css"/>
 </head>
 <body>
+<jsp:include page="../css/basic.jsp"></jsp:include>
 <%
 QnaCommDTO dto=(QnaCommDTO)request.getAttribute("dto");
 String id=(String)session.getAttribute("id");

@@ -1,4 +1,4 @@
-package com.itwillbs.qna.db;
+package com.qna.db;
 
 public class QnaDTO {
 

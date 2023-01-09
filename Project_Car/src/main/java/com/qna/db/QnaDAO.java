@@ -1,4 +1,4 @@
-package com.itwillbs.qna.db;
+package com.qna.db;
 
 import java.io.File;
 import java.sql.Connection;
@@ -14,8 +14,6 @@ import java.util.List;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
-
-import com.itwillbs.carinfo.db.CarInfoDTO;
 
 public class QnaDAO {
 	Connection con=null;
@@ -226,7 +224,7 @@ public class QnaDAO {
 	}
 	
 	public int getNextQna(int qna_num) {
-		int nextIndex=0;
+		int nextQnaNum =0;
 		try {
 			con = getConnection();
 			String sql="select *\r\n"
@@ -240,17 +238,17 @@ public class QnaDAO {
 			pstmt.setInt(1, qna_num);
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
-				nextIndex=rs.getInt("qna_num");
+				nextQnaNum=rs.getInt("qna_num");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			close();
 		}
-		return nextIndex;
+		return nextQnaNum;
 	}
 	public int getBeforeQna(int qna_num) {
-		int beforeIndex=0;
+		int beforeQnaNum =0;
 		try {
 			con = getConnection();
 			String sql="select *\r\n"
@@ -263,14 +261,14 @@ public class QnaDAO {
 			pstmt.setInt(1, qna_num);
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
-				beforeIndex=rs.getInt("qna_num");
+				beforeQnaNum = rs.getInt("qna_num");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			close();
 		}
-		return beforeIndex;
+		return beforeQnaNum;
 	}
 	
 }

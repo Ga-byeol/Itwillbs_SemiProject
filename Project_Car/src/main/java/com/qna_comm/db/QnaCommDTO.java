@@ -1,4 +1,4 @@
-package com.itwillbs.qna_comm.db;
+package com.qna_comm.db;
 
 import java.sql.Timestamp;
 

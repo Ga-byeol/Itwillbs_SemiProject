@@ -1,23 +1,24 @@
-package com.itwillbs.qna_comm.action;
+package com.qna_comm.action;
 
 import java.sql.Timestamp;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.itwillbs.qna_comm.db.QnaCommDAO;
-import com.itwillbs.qna_comm.db.QnaCommDTO;
+import com.qna_comm.db.QnaCommDAO;
+import com.qna_comm.db.QnaCommDTO;
 
 public class QnaCommWritePro implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
-		
 		int qna_num=Integer.parseInt(request.getParameter("qna_num"));
 		String comm_content = request.getParameter("comm_content");
 		String user_id = request.getParameter("user_id");
 		int qna_index=Integer.parseInt(request.getParameter("qna_index"));
+		System.out.println(comm_content);
+		System.out.println(qna_num);
 
 		QnaCommDTO dto = new QnaCommDTO();
 

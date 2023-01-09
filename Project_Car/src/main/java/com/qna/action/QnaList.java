@@ -1,12 +1,12 @@
-package com.itwillbs.qna.action;
+package com.qna.action;
 
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.itwillbs.qna.db.QnaDAO;
-import com.itwillbs.qna.db.QnaDTO;
+import com.qna.db.QnaDAO;
+import com.qna.db.QnaDTO;
 
 public class QnaList implements Action{
 
@@ -44,6 +44,7 @@ public class QnaList implements Action{
 		}
 		
 		request.setAttribute("qnaList", qnaList);
+		// startPage pageBlock currentPage endPage pageCount
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("pageBlock", pageBlock);
 		request.setAttribute("currentPage", currentPage);

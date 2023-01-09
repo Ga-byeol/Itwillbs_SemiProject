@@ -1,7 +1,7 @@
-<%@page import="com.itwillbs.qna.db.QnaDAO"%>
-<%@page import="com.itwillbs.qna.db.QnaDTO"%>
-<%@page import="com.itwillbs.qna_comm.db.QnaCommDTO"%>
-<%@page import="com.itwillbs.qna_comm.db.QnaCommDAO"%>
+<%@page import="com.qna_comm.db.QnaCommDAO"%>
+<%@page import="com.qna_comm.db.QnaCommDTO"%>
+<%@page import="com.qna.db.QnaDAO"%>
+<%@page import="com.qna.db.QnaDTO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -10,6 +10,7 @@
 <head>
 <meta charset="UTF-8">
 <title>content.jsp</title>
+<link rel="stylesheet" href="./css/basic.css"/>
 <script type="text/javascript" src="./script/jquery-3.6.3.js"></script>
 <script type="text/javascript">
  	$(document).ready(function() {
@@ -29,9 +30,11 @@
 </script>
 </head>
 <body>
+	<jsp:include page="../css/basic.jsp"></jsp:include>
 <%
 QnaDTO dto=(QnaDTO)request.getAttribute("dto");
 QnaDAO dao=new QnaDAO();
+
 int qna_num=dto.getQna_num();
 String filepath = request.getSession().getServletContext().getRealPath("qna_images");
 %>
@@ -210,27 +213,28 @@ if(id!=null) {
 		</form>
 		</td>
 	</tr>
-	<%=dto.getQna_secret().equals("Y") ? "checked='checked'" : "" %>
 <%
 	}
 }
-int beforeIndex = dao.getBeforeQna(dto.getQna_num());
-int nextIndex = dao.getNextQna(dto.getQna_num());
+int beforeQnaNum = dao.getBeforeQna(dto.getQna_num());
+int nextQnaNum = dao.getNextQna(dto.getQna_num());
 %>
 </table>
 <br>
 <% 
-if(beforeIndex!=dto.getQna_num()) {
-%>
-	<a href="QnaContent.qn?qna_num=<%=beforeIndex%>&qna_index=<%=dto.getQna_index()-1 %>">이전글</a>
-<%
-} 
-%>
-<% 
-if(nextIndex!=dto.getQna_num()) {
-%>
-	| <a href="QnaContent.qn?qna_num=<%=nextIndex%>&qna_index=<%=dto.getQna_index()+1 %>">다음글</a>
-<%
+if(id.equals("admin")){
+	if(beforeQnaNum!=dto.getQna_num()) {
+	%>
+		<a href="QnaContent.qn?qna_num=<%=beforeQnaNum	%>&qna_index=<%=dto.getQna_index()-1 %>">이전글</a>
+	<%
+		}
+	%>
+	<% 
+	if(nextQnaNum !=dto.getQna_num()) {
+	%>
+		| <a href="QnaContent.qn?qna_num=<%=nextQnaNum %>&qna_index=<%=dto.getQna_index()+1 %>">다음글</a>
+	<%
+	}
 } 
 %>
 <div>

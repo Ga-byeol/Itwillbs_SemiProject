@@ -1,4 +1,4 @@
-package com.itwillbs.qna_comm.action;
+package com.qna_comm.action;
 
 public class ActionForward {
 

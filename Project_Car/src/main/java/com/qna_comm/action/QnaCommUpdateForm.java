@@ -1,10 +1,10 @@
-package com.itwillbs.qna_comm.action;
+package com.qna_comm.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.itwillbs.qna_comm.db.QnaCommDAO;
-import com.itwillbs.qna_comm.db.QnaCommDTO;
+import com.qna_comm.db.QnaCommDAO;
+import com.qna_comm.db.QnaCommDTO;
 
 public class QnaCommUpdateForm implements Action{
 

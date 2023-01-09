@@ -1,12 +1,12 @@
-package com.itwillbs.qna.action;
+package com.qna.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.itwillbs.qna.db.QnaDAO;
-import com.itwillbs.qna.db.QnaDTO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.qna.db.QnaDAO;
+import com.qna.db.QnaDTO;
 
 public class QnaUpdatePro implements Action{
 
@@ -15,6 +15,7 @@ public class QnaUpdatePro implements Action{
 		request.setCharacterEncoding("utf-8");
 		
 		String filepath = request.getSession().getServletContext().getRealPath("qna_images");
+		// 차 정보 수정 시 고정값이 필요해서 차량번호는 수정 못함 
 		MultipartRequest multi = new MultipartRequest
 				(request, filepath, 
 						1024*1024*1024, "utf-8", new DefaultFileRenamePolicy());

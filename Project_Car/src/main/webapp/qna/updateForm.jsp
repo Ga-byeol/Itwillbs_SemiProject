@@ -1,4 +1,4 @@
-<%@page import="com.itwillbs.qna.db.QnaDTO"%>
+<%@page import="com.qna.db.QnaDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -6,8 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>updateForm.jsp</title>
+<link rel="stylesheet" href="./css/basic.css"/>
 </head>
 <body>
+<jsp:include page="../css/basic.jsp"></jsp:include>
 <%
 QnaDTO dto=(QnaDTO)request.getAttribute("dto");
 String id=(String)session.getAttribute("id");

@@ -1,4 +1,4 @@
-package com.itwillbs.qna.action;
+package com.qna.action;
 
 import java.io.IOException;
 

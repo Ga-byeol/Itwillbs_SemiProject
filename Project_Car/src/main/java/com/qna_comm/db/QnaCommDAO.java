@@ -1,4 +1,4 @@
-package com.itwillbs.qna_comm.db;
+package com.qna_comm.db;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,7 +13,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import com.itwillbs.qna.db.QnaDTO;
+import com.qna.db.QnaDTO;
 
 
 public class QnaCommDAO {

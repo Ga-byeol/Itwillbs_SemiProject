@@ -1,4 +1,5 @@
-<%@page import="com.itwillbs.qna.db.QnaDTO"%>
+<%@page import="com.qna.db.QnaDTO"%>
+<%@page import="com.qna.db.QnaDTO"%>
 <%@page import="javax.swing.plaf.synth.SynthOptionPaneUI"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -8,8 +9,10 @@
 <head>
 <meta charset="UTF-8">
 <title>list.jsp</title>
+<link rel="stylesheet" href="./css/basic.css"/>
 </head>
 <body>
+<jsp:include page="../css/basic.jsp"></jsp:include>
 <%
 String id=(String)session.getAttribute("id");
 List<QnaDTO> qnaList=(List<QnaDTO>)request.getAttribute("qnaList");

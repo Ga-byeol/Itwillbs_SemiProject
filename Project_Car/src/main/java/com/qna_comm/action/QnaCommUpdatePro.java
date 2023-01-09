@@ -1,10 +1,10 @@
-package com.itwillbs.qna_comm.action;
+package com.qna_comm.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.itwillbs.qna_comm.db.QnaCommDAO;
-import com.itwillbs.qna_comm.db.QnaCommDTO;
+import com.qna_comm.db.QnaCommDAO;
+import com.qna_comm.db.QnaCommDTO;
 
 public class QnaCommUpdatePro implements Action{
 
@@ -15,6 +15,9 @@ public class QnaCommUpdatePro implements Action{
 		int qna_num=Integer.parseInt(request.getParameter("qna_num"));
 		int comm_num=Integer.parseInt(request.getParameter("comm_num"));
 		String comm_content = request.getParameter("comm_content");
+		System.out.println("qna_num = " +qna_num);
+		System.out.println("comm_num = " +comm_num);
+		System.out.println("comm_content = " + comm_content);
 		
 		QnaCommDAO dao = new QnaCommDAO();
 		QnaCommDTO dto=new QnaCommDTO();
