@@ -13,9 +13,11 @@
 <%
 QnaDTO dto=(QnaDTO)request.getAttribute("dto");
 String id=(String)session.getAttribute("id");
+if(!id.equals("admin")) {
 	if(id==null || !id.equals(dto.getUser_id())){
-		response.sendRedirect("./BoardList.qn");
+		response.sendRedirect("./QnaList.qn");
 	}
+}
 %>
 <h1>글수정</h1>
 <form action="./QnaUpdatePro.qn" method="post" enctype="multipart/form-data">
