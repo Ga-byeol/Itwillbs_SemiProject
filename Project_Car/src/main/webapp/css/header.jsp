@@ -11,7 +11,7 @@
 	<!-- header -->
 		<header class="nav-menu">
 			<div>
-				<a href="#"><img class="logo" src="https://www.busan.go.kr/humanframe/theme/busan22/assets/img/main/svg/logo01_w.svg"></a>
+				<a href="#" class="logo"><img src="../car_images/카차차갈색.png" width="80"></a>
 <!-- 				<input type="search" id="searchBar" class="gnb_serch_box" placeholder="원하는 차종, 대여 날짜를 입력하세요."> -->
 				<nav>
 					<div>
@@ -19,11 +19,11 @@
 							<a href="#">차량예약</a>
 						</p>
 					</div>
-					<div>
-						<p>
-							<a href="#">차량소개</a>
-						</p>
-					</div>
+<!-- 					<div> -->
+<!-- 						<p> -->
+<!-- 							<a href="#">차량소개</a> -->
+<!-- 						</p> -->
+<!-- 					</div> -->
 					<div>
 						<p>이용안내</p>
 						<p>
