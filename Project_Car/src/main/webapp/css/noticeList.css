@@ -1,0 +1,59 @@
+@charset "EUC-KR";
+
+/* a태그 기본값 없애기 */
+a {
+	text-decoration: none;
+	color: black;
+}
+
+
+/* 전체 div */
+#wrapper {
+	display: grid;
+	grid-template-rows: 380px auto;
+}
+
+
+/* 탑 부분 이미지 + 내용(검색) */
+.notice_top {
+	position: relative;
+	width: 100%;
+	height: 380px;
+	background: url('https://www.hyundai.com/content/dam/hyundai/kr/ko/images/common/common-ht01-background-cloud-image-w.jpg') no-repeat right / cover;
+}
+.notice_title {
+	margin-top:100px;
+}
+.notice_title form {
+	position: absolute;
+	bottom:50px;
+	left: 50%;
+	transform: translateX(-50%);
+}
+/* 내용 가운데 정렬 */
+.notice_title * {text-align: center;}
+
+
+/* 공지 테이블 */
+.notice_cont {
+	position: relative;
+	margin: 150px auto 100px;
+	width: 100%;
+}
+.page_box {font-size: 12px; color: gray;}
+.notice_table {
+	width: 80%;
+	margin: 0 auto;
+}
+.notice_table tr:nth-child(2n):not(tr:nth-child(2)) {
+	background: rgb(241, 239, 237);
+}
+.notice_table tr:nth-child(2) {
+	background: rgb(230, 219, 207);
+}
+.notice_table td:not(tr:first-child td) {
+	padding: 5px 0;
+	margin: 0 !important;
+	text-align: center;
+}
+.notice_list {text-align: center;}

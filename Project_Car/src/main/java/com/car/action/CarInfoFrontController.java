@@ -1,7 +1,6 @@
 package com.car.action;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,63 +8,69 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.car.db.CarInfoDTO;
+import vo.Action;
+import vo.ActionForward;
 
 public class CarInfoFrontController extends HttpServlet{
 
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String strpath=request.getServletPath();
-		System.out.println("뽑�? 주소 strpath : "+strpath);
+		String requestURI = request.getRequestURI();
+		System.out.println(" Controller : requestURI = "+requestURI);
+		String ctxPath = request.getContextPath();
+		System.out.println(" Controller : ctxPath = "+ctxPath);
+		String command = requestURI.substring(ctxPath.length());
+		System.out.println(" Controller : command = "+command);
 		
 		ActionForward forward=null;
 		Action action=null;
-		if(strpath.equals("/CarInsertForm.ci")) {
+		
+		if(command.equals("/CarInsertForm.ci")) {
 			forward=new ActionForward();
 			forward.setPath("./carinfo/insertForm.jsp");
 			forward.setRedirect(false);
-		} else if(strpath.equals("/CarInsertPro.ci")) {
+		} else if(command.equals("/CarInsertPro.ci")) {
 			action=new CarInsertPro();
 			try {
 				forward=action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			} 
-		} else if(strpath.equals("/CarList.ci")) {
+		} else if(command.equals("/CarList.ci")) {
 			action=new CarList();
 			try {
 				forward=action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			} 
-		} else if(strpath.equals("/CarDelete.ci")) {
+		} else if(command.equals("/CarDelete.ci")) {
 			action=new CarDelete();
 			try {
 				forward=action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			} 
-		} else if(strpath.equals("/CarUpdateForm.ci")){
+		} else if(command.equals("/CarUpdateForm.ci")){
 			action=new CarUpdateForm();
 			try {
 				forward=action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(strpath.equals("/CarUpdatePro.ci")){
+		} else if(command.equals("/CarUpdatePro.ci")){
 			action=new CarUpdatePro();
 			try {
 				forward=action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if(strpath.equals("/CarListUser.ci")){
-			action=new CarListUser();
+		} else if(command.equals("/CarListPro.ci")) {
+			action = new CarListPro();
 			try {
 				forward=action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
-			}
+			} 
 		}
 		
 		

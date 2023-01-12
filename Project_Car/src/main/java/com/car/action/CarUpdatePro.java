@@ -8,6 +8,9 @@ import com.car.db.CarInfoDTO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import vo.Action;
+import vo.ActionForward;
+
 public class CarUpdatePro implements Action{
 
 	@Override

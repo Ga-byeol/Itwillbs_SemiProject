@@ -30,8 +30,29 @@ public class ReservationDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 		return con;
+	}
+	
+	public void insertReservation(String uid, String carNum, String stime, int time, String userId) {
+		try {
+			con = getConnect();
+			sql = "insert into reservation(res_num, res_car_num, res_stime, res_time, user_num)"
+				+ "values(?, ?, ?, ?, ?)";
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, uid);
+			pstmt.setString(2, carNum);
+			pstmt.setString(3, stime.split(" ~ ")[0]);
+			pstmt.setInt(4, time);
+			pstmt.setString(4, userId);
+			
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
 	}
 	
 	private void closeDB() {

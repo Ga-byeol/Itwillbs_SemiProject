@@ -1,120 +1,280 @@
-<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.reservation.db.ReservationDTO"%>
+<%@page import="com.car.db.CarInfoDTO"%>
+<%@page import="com.car.db.CarInfoDAO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>reservation/ReservationForm.jsp</title>
-
-<style type="text/css">
-.test {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	height: 100%;
-}
-
-body {
-	height: 100%;
-	overflow: auto;
-}
-
-</style>
+<title>ReservationForm.jsp</title>
+<link href="./css/carInfo.css" rel="stylesheet" type="text/css">
 </head>
-<%
-// ReservationDTO res_dto = (ReservationDTO)request.getAttribute("res_dto");
-ReservationDTO res_dto = new ReservationDTO();
-%>
-<body>
-	<form action="./PaymentForm.res" method="post">
-		<div class="test">
-			<h1>예약 페이지</h1>
-			<img src="./images/test.jpg" height="200" width="200">
-			<table border="1" width="200">
-				<tr>
-					<th>차 모델</th>
-					<th>모델</th>
-				</tr>
-				<tr>
-					<th>차 종류</th>
-					<th>종류</th>
-				</tr>
-				<tr>
-					<th>차 브랜드</th>
-					<th>브랜드</th>
-				</tr>
-				<tr>
-					<th>차 연료</th>
-					<th>연료</th>
-				</tr>
-			</table>
-			<table border="1">
-				<tr>
-					<th>대여 시간</th>
-					<th>반납 시간</th>
-					<th>총 시간</th>
-				</tr>
-				<tr>
-					<th><%=res_dto.getRes_stime()%></th>
-<%-- 					<th><%=new SimpleDateFormat("yyyy년 MM월 dd일 HH시 mm분 ss초").parse(res_dto.getRes_stime())%></th> --%>
-					<th><%=res_dto.getRes_time()%></th>
-				</tr>
-			</table>
-			<table border="1">
-				<tr>
-					<th>결제가격</th>
-					<th><%=res_dto.getRes_time()%></th> <%-- 차 가격 * 이용 시간 --%>
-				</tr>
-			</table>
-			<input type="submit" value="예약하기">
-			<hr>
-			<h3>부가옵션</h3>
-			<table border="1">
-				<tr>
-					<th>베이비시트</th>
-					<th>O</th>
-				</tr>
-				<tr>
-					<th>내비게이션</th>
-					<th>O</th>
-				</tr>
-				<tr>
-					<th>하이패스</th>
-					<th>O</th>
-				</tr>
-			</table>
-			<hr>
-			<h3>차량 반납 환불금액</h3>
-			<table border="1">
-				<tr>
-					<th>예약일시 24시간 이전</th>
-					<th>예약금의 100%</th>
-				</tr>
-				<tr>
-					<th>예약일시 24시간 이내</th>
-					<th>예약금의 90%</th>
-				</tr>
-				<tr>
-					<th>대여 도중 환불</th>
-					<th>남은 시간 비용의 90%</th>
-				</tr>
-			</table>
 
-			<hr>
-			<h3>주의 사항</h3>
-			- 차량 반납 시, 차량 내 문제 확인되면 실내 클리닝 비용 10만원 청구<br>
-			<br> - 반려동물 동반 시 대여 불가능<br>
-			<br> 연소자의 근로는 특별한 보호를 받는다.<br> 모든 국민은 종교의 자유를 가진다.<br>
-			훈장등의 영전은 이를 받은 자에게만 효력이 있고, 어떠한 특권도 이에 따르지 아니한다.<br> 일반사면을 명하려면
-			국회의 동의를 얻어야 한다.<br> 공개하지 아니한 회의내용의 공표에 관하여는 법률이 정하는 바에 의한다.<br>
-			이 헌법중 공무원의 임기 또는 중임제한에 관한 규정은 이 헌법에 의하여 그 공무원이 최초로 선출 또는 임명된 때로부터
-			적용한다.<br> 헌법재판소의 조직과 운영 기타 필요한 사항은 법률로 정한다. 대법원장의 임기는 6년으로 하며,
-			중임할 수 없다.<br> 국가는 건전한 소비행위를 계도하고 생산품의 품질향상을 촉구하기 위한 소비자보호운동을 법률이
-			정하는 바에 의하여 보장한다.<br>
+<body>
+<%
+	CarInfoDTO carDTO = (CarInfoDTO)request.getAttribute("carDTO");
+%>
+	<jsp:include page="../inc/headerJSP.jsp"></jsp:include>
+	<form action="./PaymentPro.res" method="get" onsubmit="return checkNull()">
+	<input type="hidden" id="sessionId" value="<%=(String)session.getAttribute("sessionId")%>">
+	<input type="hidden" name="car_num" value="<%=carDTO.getCar_num()%>">
+	<div id="wrapper">
+		<div>
+			<!-- 1. 차 이미지 정보 요약 -->
+			<div>
+				<!-- 요약 프레임 -->
+				<div class="carMain_car_img">
+					<!-- 이미지 프레임 -->
+					<img src="./car_images/<%=carDTO.getCar_image() %>">
+				</div>
+			</div>
+
+			<div class="carMain_summ">
+				<div>
+					<h4><%= carDTO.getCar_brand() %></h4>
+					<h2><%= carDTO.getCar_model() %></h2>
+					<p>
+						<span>친환경 전기차 | 전기 | 1,600CC</span>
+						<!-- 이건 없애도 될 듯? 임의로 넣어놨어 -->
+					</p>
+					<input type="checkbox" id="carMainBtn"> <label
+						for="carMainBtn"><a href="#infoBox"><p>차량 정보</p></a></label>
+					<!-- 차량정보 앵커 -->
+					<input type="checkbox" id="likeBtn"> <label for="likeBtn">♥</label>
+				</div>
+			</div>
+			<!-- 요약 프레임 끝 -->
 		</div>
-	</form>
+		<!-- 2. 차 이미지 정보 요약 끝-->
+		<div class="carMain_detail" id="infoBox">
+			<!-- 2. 차 렌트 정보 상세 + 차량정보 앵커 -->
+			<nav>
+				<a href="#carBrand">브랜드</a> <a href="#carType">차종</a> <a
+					href="#carModel">모델</a> <a href="#carFuel">연료</a> <a
+					href="#carYear">연식</a>
+				<!--             <a href="#carOption">옵션</a> -->
+				<!-- 이건 지울 거 -->
+				<a href="#carPrice">가격</a>
+			</nav>
+			<span id="carBrand"></span>
+			<!-- 브랜드 앵커 -->
+			<div class="details_layer">
+				<p class="d_l_title">
+					STEP1 <span>브랜드</span>
+				</p>
+				<span id="carType"></span>
+				<!-- 차종 앵커 -->
+				<div class="d_layer1">
+					<p>
+						<span><%= carDTO.getCar_model()%></span> <label><input
+							type="radio" name="brand" checked></label>
+					</p>
+				</div>
+				<span id="carModel"></span>
+				<!-- 모델 앵커 -->
+				<p class="d_l_title">
+					STEP2 <span>차종</span>
+				</p>
+				<div class="d_layer2">
+					<label><input type="radio" name="car-Type" checked><%= carDTO.getCar_type() %></label>
+				</div>
+				<span id="carFuel"></span>
+				<!-- 연료 앵커 -->
+				<p class="d_l_title">
+					STEP3 <span>모델</span>
+				</p>
+				<div class="d_layer3">
+					<details open>
+						<summary>그랜저</summary>
+						<label><input type="radio" checked><%=carDTO.getCar_model() %></label>
+					</details>
+				</div>
+				<span id="carYear"></span>
+				<!-- 연식 앵커 -->
+				<p class="d_l_title">
+					STEP4 <span>연료</span>
+				</p>
+				<div class="d_layer4">
+					<label><input type="radio" name="car-Fuel" checked><%= carDTO.getCar_fuel() %></label>
+				</div>
+				<!--             <span id="carOption"></span>옵션 앵커 -->
+				<p class="d_l_title">
+					STEP5 <span>연식</span>
+				</p>
+				<div class="d_layer5">
+					<p><%= carDTO.getCar_year() %>년식
+					</p>
+				</div>
+				<span id="carPrice"></span>
+				<p class="d_l_title">
+					STEP6 <span>시간당 가격</span>
+				</p>
+				<div class="d_layer7">
+					<input type="text" id="price" value="<%=carDTO.getPer_hour()%>" readonly>원
+				</div>
+			</div>
+		</div>
+		<!-- 2. 차 렌트 정보 상세 끝 -->
+		<div>
+			<!-- 3. 차 렌트 정리, 예약 -->
+			<div class="car_detail_box">
+
+				<tr> 
+				<td class="top" align="left" colspan="2">예약일시</td>
+			</tr>
+			<tr>
+				<td class="content" colspan="2" align="left">
+					<input id="selectedDate" style="border:none; width:100px"  name="selectedDate" value="" readonly></input>
+					<input id="selectedTime" style="border:none"  name="selectedTime" value="" readonly></input><br>
+				</td>
+			</tr>
+			<tr>
+				<td class="top" align="left">결제가격</td>
+			</tr>
+			<tr>
+				<td class="content" align="left" colspan="2">
+					<input id="totalPrice"  style="border:none; text-align:right; width:100px" name="totalPrice" value="0" readonly>원</input>
+				</td>
+			</tr>
+			<tr>
+				<td class="content" align="left" colspan="2">
+				</td>
+			</tr>
+			<tr>
+				<div class="month_box">
+					<div>
+					<tr>
+						<td>
+							<!-- 달력 -->
+							<table id="calendar" align="center">
+								<tr>
+									<td align="center"><label onclick="prevCalendar()"> ◀ </label></td>
+									<td colspan="5" align="center" id="calendarTitle">yyyy년 m월</td>
+									<td align="center"><label onclick="nextCalendar()"> ▶ </label></td>
+								</tr>
+								<tr>
+									<td align="center"><font color="red">일</font></td>
+									<td align="center">월</td>
+									<td align="center">화</td>
+									<td align="center">수</td>
+									<td align="center">목</td>
+									<td align="center">금</td>
+									<td align="center"><font color="blue">토</font></td>
+								</tr>
+							</table>
+						</td>
+
+						</tr>
+						
+					</div>
+					<div id="scroll" style="height: 200px; overflow:auto">
+					<td> <table id="timeTable"></table></td>
+					</div>
+				</div>
+				</tr>
+				<ul>
+					<li>
+						<div>
+							<strong>브랜드</strong>
+							<div>
+								<span><%= carDTO.getCar_brand() %></span>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div>
+							<strong>차종</strong>
+							<div>
+								<span><%= carDTO.getCar_type() %></span>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div>
+							<strong>모델</strong>
+							<div>
+								<span><%= carDTO.getCar_model() %></span>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div>
+							<strong>연료</strong>
+							<div>
+								<span><%= carDTO.getCar_fuel() %></span>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div>
+							<strong>연식</strong>
+							<div>
+								<span><%= carDTO.getCar_year() %></span>
+							</div>
+						</div>
+					</li>
+					<!--                <li> -->
+					<!--                   <div> -->
+					<!--                      <strong>옵션</strong> -->
+					<!--                      <div> -->
+					<!--                         <span>유아용 시트</span> -->
+					<!--                         <span>네비게이션</span> -->
+					<!--                         <span>하이패스</span> -->
+					<!--                      </div> -->
+					<!--                   </div> -->
+					<!--                </li> -->
+					<li>
+						<div>
+							<strong>시간 당 가격</strong>
+							<div>
+								<input type="text" value="<%=carDTO.getPer_hour()%>" readonly>원
+							</div>
+						</div>
+					</li>
+				</ul>
+				<div class="book_box">
+					<input type="submit" value="예약하기">
+				</div>
+			</div>
+		</div>
+		<!-- 3. 차 렌트 정리, 예약 끝 -->
+		<div>
+			<!-- 4. 리뷰 -->
+			<div>
+				<div class="car_review_img">이미지</div>
+				<div class="car_review_cont">내용</div>
+				<div class="car_review_user">
+					<span>유저명</span> <span>별점</span>
+				</div>
+			</div>
+			<div>
+				<div class="car_review_img">이미지</div>
+				<div class="car_review_cont">내용</div>
+				<div class="car_review_user">
+					<span>유저명</span> <span>별점</span>
+				</div>
+			</div>
+			<div>
+				<div class="car_review_img">이미지</div>
+				<div class="car_review_cont">내용</div>
+				<div class="car_review_user">
+					<span>유저명</span> <span>별점</span>
+				</div>
+			</div>
+			<div>
+				<div class="car_review_img">이미지</div>
+				<div class="car_review_cont">내용</div>
+				<div class="car_review_user">
+					<span>유저명</span> <span>별점</span>
+				</div>
+			</div>
+		</div>
+		<!-- 4. 리뷰 끝 -->
+	</div>
+		</form>
 </body>
+	<script src="./JavaScript/calendar.js"></script>
+	<script type="text/javascript">buildCalendar();</script>
 </html>

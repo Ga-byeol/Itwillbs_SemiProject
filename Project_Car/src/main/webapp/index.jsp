@@ -7,8 +7,7 @@
 </head>
 <body>
 <%
-	//index.jsp
-	response.sendRedirect("./CarInsertForm.ci");
+	response.sendRedirect("./UserHome.us");
 %>
 </body>
 </html>

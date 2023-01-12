@@ -132,7 +132,6 @@ public class CarInfoDAO {
 		System.out.println("updateCar = " + dto.getCar_num());
 		CarInfoDTO dto2 = getCar(dto.getCar_num());
 		try {
-			// ?ˆ˜? •?œ¼ë¡? ?ƒˆë¡œìš´ ?ŒŒ?¼?´ ?—…ë¡œë“œ?˜ë©? ê¸°ì¡´ ?´ë¯¸ì? ?ŒŒ?¼ ?‚­? œ
 			if(imageChange) {
 				String deleteImage = dto2.getCar_image();
 				File deleteImageName = new File (filepath + "\\" + deleteImage);

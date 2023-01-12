@@ -1,12 +1,14 @@
 package com.reservation.db;
 
+import com.car.db.CarInfoDTO;
+
 public class ReservationDTO {
 	private int res_num;
-	private String res_car_num; // CarDTO
+	private CarInfoDTO car_dto; // CarDTO
 	private String res_stime;
 	private int res_time;
 	private int return_car;
-	private int user_num; // UserDTO
+	private String user_id; // UserDTO
 	private int navi;
 	private int sheet;
 	private int hipass;
@@ -17,11 +19,12 @@ public class ReservationDTO {
 	public void setRes_num(int res_num) {
 		this.res_num = res_num;
 	}
-	public String getRes_car_num() {
-		return res_car_num;
+	
+	public CarInfoDTO getCar_dto() {
+		return car_dto;
 	}
-	public void setRes_car_num(String res_car_num) {
-		this.res_car_num = res_car_num;
+	public void setCar_dto(CarInfoDTO car_dto) {
+		this.car_dto = car_dto;
 	}
 	public String getRes_stime() {
 		return res_stime;
@@ -41,11 +44,11 @@ public class ReservationDTO {
 	public void setReturn_car(int return_car) {
 		this.return_car = return_car;
 	}
-	public int getUser_num() {
-		return user_num;
+	public String getUser_id() {
+		return user_id;
 	}
-	public void setUser_num(int user_num) {
-		this.user_num = user_num;
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
 	public int getNavi() {
 		return navi;

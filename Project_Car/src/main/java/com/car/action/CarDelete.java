@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.car.db.CarInfoDAO;
 
+import vo.Action;
+import vo.ActionForward;
+
 
 public class CarDelete implements Action{
 
@@ -16,7 +19,7 @@ public class CarDelete implements Action{
 		System.out.println(car_num);
 		CarInfoDAO dao = new CarInfoDAO();
 		String filepath = request.getSession().getServletContext().getRealPath("car_images");
-		// Ï∞®Îüâ?†ïÎ≥? ?Ç≠?†ú ?ãú ?ù¥ÎØ∏Ï? ?åå?ùº?èÑ Í∞ôÏù¥ ?Ç≠?†ú
+
 		File deleteImageName = new File (filepath + "\\" + request.getParameter("car_image"));
 		deleteImageName.delete();
 		

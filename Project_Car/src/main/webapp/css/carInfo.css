@@ -212,7 +212,7 @@ html, body {margin: 0 auto; padding: 0 auto;}
 	left:0;
 	width: 100%;
 }
-.car_detail_box > .book_box > button {
+.car_detail_box > .book_box > input {
 	position: absolute;
 	left: 50%;
 	transform: translate(-50%);
@@ -241,7 +241,6 @@ html, body {margin: 0 auto; padding: 0 auto;}
 	border: 1px solid;
 	margin: 0 10px 100px;
 }
-
 
 
 

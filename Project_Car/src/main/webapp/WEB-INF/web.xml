@@ -1,30 +1,104 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
-  <display-name>Project_Car</display-name>
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-  </welcome-file-list>
-
-<servlet>
-	<servlet-name>ReservationFrontController</servlet-name>
-	<servlet-class>com.reservation.action.ReservationFrontController</servlet-class>
-</servlet>
-	<servlet-mapping>
-		<servlet-name>ReservationFrontController</servlet-name>
-		<url-pattern>*.res</url-pattern>
-	</servlet-mapping>
-	
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3.1.xsd"
+	id="WebApp_ID" version="3.1">
+	<display-name>Project</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+	</welcome-file-list>
+	<!-- ===================== Qna ===================== -->
 	<servlet>
-	<servlet-name>CarInfoFrontController</servlet-name>
-	<servlet-class>com.car.action.CarInfoFrontController</servlet-class>
-</servlet>
+		<servlet-name>QnaFrontController</servlet-name>
+		<servlet-class>com.qna.action.QnaFrontController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>QnaFrontController</servlet-name>
+		<url-pattern>*.qn</url-pattern>
+	</servlet-mapping>
+
+	<!-- ===================== QnaComment ===================== -->
+	<servlet>
+		<servlet-name>QnaCommFrontController</servlet-name>
+		<servlet-class>com.qna_comm.action.QnaCommFrontController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>QnaCommFrontController</servlet-name>
+		<url-pattern>*.co</url-pattern>
+	</servlet-mapping>
+
+	<!-- ===================== CarInfo ===================== -->
+	<servlet>
+		<servlet-name>CarInfoFrontController</servlet-name>
+		<servlet-class>com.car.action.CarInfoFrontController</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>CarInfoFrontController</servlet-name>
 		<url-pattern>*.ci</url-pattern>
+	</servlet-mapping>
+
+	<!-- ===================== Notice ===================== -->
+	<servlet>
+		<servlet-name>NoticeFrontController</servlet-name>
+		<servlet-class>com.notice.action.NoticeFrontController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>NoticeFrontController</servlet-name>
+		<url-pattern>*.no</url-pattern>
+	</servlet-mapping>
+
+	<!-- ===================== Review ===================== -->
+	<servlet>
+		<servlet-name>ReviewFrontController</servlet-name>
+		<servlet-class>com.review.action.ReviewFrontController </servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ReviewFrontController </servlet-name>
+		<url-pattern>*.re</url-pattern>
+	</servlet-mapping>
+
+	<!-- ===================== User ===================== -->
+	<servlet>
+		<servlet-name>UserFrontController</servlet-name>
+		<servlet-class>com.user.action.UserFrontController </servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UserFrontController </servlet-name>
+		<url-pattern>*.us</url-pattern>
+	</servlet-mapping>
+	
+	<!-- ===================== UserInfo ===================== -->
+	<servlet>
+		<servlet-name>UserInfoFrontController</servlet-name>
+		<servlet-class>com.userinfo.action.UserInfoFrontController </servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UserInfoFrontController </servlet-name>
+		<url-pattern>*.me</url-pattern>
+	</servlet-mapping>
+	
+	<!-- ===================== Reservation ===================== -->
+	<servlet>
+		<servlet-name>ReservationFrontController</servlet-name>
+		<servlet-class>com.reservation.action.ReservationFrontController </servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ReservationFrontController </servlet-name>
+		<url-pattern>*.res</url-pattern>
+	</servlet-mapping>
+
+	<!-- ===================== MainPage ===================== -->
+		<servlet>
+		<servlet-name>MainPageFrontController</servlet-name>
+		<servlet-class>com.mainPage.MainPageFrontController </servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MainPageFrontController </servlet-name>
+		<url-pattern>*.ma</url-pattern>
 	</servlet-mapping>
 </web-app>
