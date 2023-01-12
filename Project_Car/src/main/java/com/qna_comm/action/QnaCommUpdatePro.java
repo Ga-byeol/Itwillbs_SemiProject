@@ -15,6 +15,12 @@ public class QnaCommUpdatePro implements Action{
 		int qna_num=Integer.parseInt(request.getParameter("qna_num"));
 		int comm_num=Integer.parseInt(request.getParameter("comm_num"));
 		String comm_content = request.getParameter("comm_content");
+<<<<<<< HEAD
+=======
+		System.out.println("qna_num = " +qna_num);
+		System.out.println("comm_num = " +comm_num);
+		System.out.println("comm_content = " + comm_content);
+>>>>>>> 12ac4a8fdb1c6fe1fd13370bedf3989c0f50b81f
 		
 		QnaCommDAO dao = new QnaCommDAO();
 		QnaCommDTO dto=new QnaCommDTO();

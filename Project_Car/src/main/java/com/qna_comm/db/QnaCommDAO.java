@@ -36,6 +36,13 @@ public class QnaCommDAO {
 	}
 
 	public void insertQnaComm(QnaCommDTO dto) {
+<<<<<<< HEAD
+=======
+		System.out.println("QnaCommDTO qna_num 값 : " + dto.getQna_num());
+		System.out.println("QnaCommDTO comm_num 값 : " + dto.getComm_num());
+		System.out.println("QnaCommDTO content 값 : " + dto.getComm_content());
+		System.out.println("QnaCommDTO user_id 값 : " + dto.getUser_id());
+>>>>>>> 12ac4a8fdb1c6fe1fd13370bedf3989c0f50b81f
 		try {
 			con = getConnection();
 			String sql2 = "select max(comm_num) from qna_comment where qna_num=?";
@@ -46,7 +53,11 @@ public class QnaCommDAO {
 			
 			int comm_num=0;
 			if(rs.next()) {
+<<<<<<< HEAD
 				comm_num=rs.getInt("max(comm_num)")+1;
+=======
+				comm_num=rs.getInt("max(comm_num)")+1; // max(num)은 컬럼명
+>>>>>>> 12ac4a8fdb1c6fe1fd13370bedf3989c0f50b81f
 			}
 			String sql="insert into qna_comment (qna_num ,comm_num, comm_content, comm_date, user_id) values(?,?,?,?,?)";
 			pstmt =con.prepareStatement(sql);
@@ -68,6 +79,10 @@ public class QnaCommDAO {
 		List<QnaCommDTO> commList = new ArrayList<QnaCommDTO>();
 		try {
 			con = getConnection();
+<<<<<<< HEAD
+=======
+//			String sql="select * from qna_comment where qna_num=? order by comm_num limit ?,?";
+>>>>>>> 12ac4a8fdb1c6fe1fd13370bedf3989c0f50b81f
 			String sql="select * from (select ROW_NUMBER() OVER(ORDER BY comm_num) comm_index, comm_num, user_id, comm_content, comm_date from qna_comment where qna_num=?) A order by A.comm_index limit ?,?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, qna_num);
@@ -97,6 +112,10 @@ public class QnaCommDAO {
 	}
 	
 	public QnaCommDTO getQnaComm(int qna_num ,int comm_num) {
+<<<<<<< HEAD
+=======
+		// MemberDAO getMember 메서드 참고
+>>>>>>> 12ac4a8fdb1c6fe1fd13370bedf3989c0f50b81f
 		QnaCommDTO dto=null;
 		try {
 			con = getConnection();
@@ -166,7 +185,11 @@ public class QnaCommDAO {
 			pstmt.setInt(1, qna_num);
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
+<<<<<<< HEAD
 				count=rs.getInt("count(*)"); 
+=======
+				count=rs.getInt("count(*)"); // 열이름 count(*)
+>>>>>>> 12ac4a8fdb1c6fe1fd13370bedf3989c0f50b81f
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -178,4 +201,8 @@ public class QnaCommDAO {
 	
 	
 	
+<<<<<<< HEAD
+=======
+	
+>>>>>>> 12ac4a8fdb1c6fe1fd13370bedf3989c0f50b81f
 }

@@ -67,4 +67,10 @@ public class QnaDTO {
 		this.qna_index = qna_index;
 	}
 	
+<<<<<<< HEAD
+=======
+	
+	
+
+>>>>>>> 12ac4a8fdb1c6fe1fd13370bedf3989c0f50b81f
 }

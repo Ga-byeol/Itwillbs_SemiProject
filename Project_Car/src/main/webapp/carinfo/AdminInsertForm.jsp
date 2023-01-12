@@ -1,4 +1,4 @@
-<%@page import="com.car.db.CarInfoDAO"%>
+<%@page import="com.itwillbs.carinfo.db.CarInfoDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  
@@ -59,14 +59,9 @@ function check() {
 
 <meta charset="UTF-8">
 <title>InsertFrom.jsp</title>
+
 </head>
 <body>
-<%
-String id=(String)session.getAttribute("id");
-// if(!id.equals("admin")){
-// 	response.sendRedirect("./CarList.ci");
-// }
-%>
 <div id="div"></div>
 <form action="CarInsertPro.ci" method="post" enctype="multipart/form-data" onsubmit="return check()">
 <h1>차 정보 등록</h1>

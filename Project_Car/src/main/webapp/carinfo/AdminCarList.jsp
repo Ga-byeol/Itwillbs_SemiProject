@@ -1,4 +1,4 @@
-<%@page import="com.car.db.CarInfoDTO"%>
+<%@page import="com.itwillbs.carinfo.db.CarInfoDTO"%>
 <%@page import="javax.swing.plaf.synth.SynthOptionPaneUI"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -6,6 +6,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script type="text/javascript">
+	function deleteCheck() {
+		if(!confirm("삭제 하시겠습니까?")){
+			alert("O");	
+			return false;
+		}else{
+			alert("X");			
+		}
+</script>
 <meta charset="UTF-8">
 <title>list.jsp</title>
 </head>
@@ -20,7 +29,6 @@ int currentPage=(Integer)request.getAttribute("currentPage");
 int endPage=(Integer)request.getAttribute("endPage");
 int pageCount=(Integer)request.getAttribute("pageCount");
 CarInfoDTO dto = new CarInfoDTO();
-
 %>
 
 <%
@@ -63,15 +71,13 @@ CarInfoDTO dto = new CarInfoDTO();
 			</tr>
 		</table>
 			<% 
-			if(id!=null){
-				if(id.equals("admin")) {
-					%>
-<%-- 					<input type="button" value="수정" onclick="location.href='./CarUpdateForm.ci?car_num=<%=dto.getCar_num() %>'">  --%>
-<%-- 					<input type="button" value="삭제" onsubmit="location.href='./CarDelete.ci?car_num=<%=dto.getCar_num() %>&car_image=<%=dto.getCar_image() %>'" onclick="return confirm('정말로 삭제하시겠습니까?')"> --%>
-					<a href="./CarUpdateForm.ci?car_num=<%=dto.getCar_num() %>&car_image=<%=dto.getCar_image() %>">수정</a>
-					<a href="./CarDelete.ci?car_num=<%=dto.getCar_num() %>&car_image=<%=dto.getCar_image() %>" onclick="return confirm('정말로 삭제하시겠습니까?')" >삭제</a>
-					<%
-				}
+			if(id.equals("admin")) {
+			%>
+				<input type="button" value="수정" onclick="location.href='./CarUpdateForm.ci?car_num=<%=dto.getCar_num() %>'"> 
+				<input type="button" value="삭제" onsubmit="location.href='./CarDelete.ci?car_num=<%=dto.getCar_num() %>&car_image=<%=dto.getCar_image() %>'" onclick="return confirm('정말로 삭제하시겠습니까?')">
+				<a href="./CarDelete.ci?car_num=<%=dto.getCar_num() %>&car_image=<%=dto.getCar_image() %>">삭제</a>
+				<a href="./CarUpdateForm.ci?car_num=<%=dto.getCar_num() %>">수정</a>
+			<%
 			}
 			%>
 	<hr>
@@ -81,6 +87,7 @@ CarInfoDTO dto = new CarInfoDTO();
 <br>
 
 <%
+// System.out.println("endPage="+endPage);
 // 10페이지 이전
 if(startPage>pageBlock) {
 	%>
@@ -117,12 +124,10 @@ if(endPage < pageCount) {
 <br>
 <input type="button" value="메인으로 이동" onclick="location.href='./MemberMain.me'"> 
 <%
-if(id!=null){
-	if(id.equals("admin")) {
-	%>
-	| <input type="button" value="차량정보 등록" onclick="location.href='./CarInsertForm.ci'">
-	<%
-	}
+if(id.equals("admin")) {
+%>
+| <input type="button" value="차량정보 등록" onclick="location.href='./CarInsertForm.ci'">
+<%
 }
 %>
 </body>

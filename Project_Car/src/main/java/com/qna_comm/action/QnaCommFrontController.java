@@ -14,7 +14,11 @@ public class QnaCommFrontController extends HttpServlet{
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String strpath=request.getServletPath();
+<<<<<<< HEAD
 		System.out.println("strpath : "+strpath);
+=======
+		System.out.println("뽑은 주소 strpath : "+strpath);
+>>>>>>> 12ac4a8fdb1c6fe1fd13370bedf3989c0f50b81f
 		
 		ActionForward forward=null;
 		Action action=null;
@@ -48,10 +52,18 @@ public class QnaCommFrontController extends HttpServlet{
 			} 
 		}
 		
+<<<<<<< HEAD
+=======
+		// 이동
+>>>>>>> 12ac4a8fdb1c6fe1fd13370bedf3989c0f50b81f
 		if(forward!=null) {
 			if(forward.isRedirect()) {
 				response.sendRedirect(forward.getPath());
 			}else {
+<<<<<<< HEAD
+=======
+				System.out.println("false : ");
+>>>>>>> 12ac4a8fdb1c6fe1fd13370bedf3989c0f50b81f
 				RequestDispatcher dis
 				= request.getRequestDispatcher(forward.getPath());
 				dis.forward(request, response);

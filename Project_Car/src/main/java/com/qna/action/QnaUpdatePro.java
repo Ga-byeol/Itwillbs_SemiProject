@@ -13,8 +13,14 @@ public class QnaUpdatePro implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
+<<<<<<< HEAD
 		String filepath = request.getSession().getServletContext().getRealPath("qna_images");
 		
+=======
+		
+		String filepath = request.getSession().getServletContext().getRealPath("qna_images");
+		// 차 정보 수정 시 고정값이 필요해서 차량번호는 수정 못함 
+>>>>>>> 12ac4a8fdb1c6fe1fd13370bedf3989c0f50b81f
 		MultipartRequest multi = new MultipartRequest
 				(request, filepath, 
 						1024*1024*1024, "utf-8", new DefaultFileRenamePolicy());
@@ -37,6 +43,10 @@ public class QnaUpdatePro implements Action{
 		QnaDAO dao = new QnaDAO();
 		QnaDTO dto=new QnaDTO();
 		
+<<<<<<< HEAD
+=======
+		
+>>>>>>> 12ac4a8fdb1c6fe1fd13370bedf3989c0f50b81f
 		dto.setQna_num(qna_num);
 		dto.setQna_sub(qna_sub);
 		dto.setQna_content(qna_content);
