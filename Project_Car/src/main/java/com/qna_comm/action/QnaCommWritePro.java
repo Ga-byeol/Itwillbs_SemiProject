@@ -13,19 +13,14 @@ public class QnaCommWritePro implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
-<<<<<<< HEAD
-		
-=======
->>>>>>> 12ac4a8fdb1c6fe1fd13370bedf3989c0f50b81f
+
 		int qna_num=Integer.parseInt(request.getParameter("qna_num"));
 		String comm_content = request.getParameter("comm_content");
 		String user_id = request.getParameter("user_id");
 		int qna_index=Integer.parseInt(request.getParameter("qna_index"));
-<<<<<<< HEAD
-=======
+
 		System.out.println(comm_content);
 		System.out.println(qna_num);
->>>>>>> 12ac4a8fdb1c6fe1fd13370bedf3989c0f50b81f
 
 		QnaCommDTO dto = new QnaCommDTO();
 

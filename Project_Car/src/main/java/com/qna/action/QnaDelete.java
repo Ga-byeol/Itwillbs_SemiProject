@@ -15,10 +15,6 @@ public class QnaDelete implements Action{
 		QnaDAO dao = new QnaDAO();
 		
 		String filepath = request.getSession().getServletContext().getRealPath("qna_images");
-<<<<<<< HEAD
-=======
-		// 차량정보 삭제 시 이미지 파일도 같이 삭제
->>>>>>> 12ac4a8fdb1c6fe1fd13370bedf3989c0f50b81f
 		dao.deleteQna(qna_num, filepath);
 		
 		ActionForward forward=new ActionForward();

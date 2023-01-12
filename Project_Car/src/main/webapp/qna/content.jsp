@@ -26,12 +26,10 @@
 			}
 		});
  	});
-<<<<<<< HEAD
 </script>
 </head>
 <body>
 <jsp:include page="../inc/header.jsp"></jsp:include>
-=======
  	 
 </script>
 </head>
@@ -68,7 +66,6 @@ String filepath = request.getSession().getServletContext().getRealPath("qna_imag
 	</tr>
 	<tr>
 		<td colspan="2">
-<<<<<<< HEAD
 			<div>
 				<% 
 				if(dto.getQna_image() != null){
@@ -102,39 +99,6 @@ String sessionId=(String)session.getAttribute("sessionId");
 			}
 		}
 		%>
-=======
-		<div>
-			<% 
-			if(dto.getQna_image() != null){
-			%>
-			<img src="./qna_images/<%=dto.getQna_image() %>" width=350px height=190px style="margin: 0px; margin-right: 40px;"><br>
-			<% 
-			}
-			%>
-			<%=dto.getQna_content() %>
-		</div>
-<%
-// 세션값 가져오기
-String id=(String)session.getAttribute("id");
-// 글쓴이와 로그인(세션값) 일치하면 => 글수정, 글삭제 버튼 보이기
-		if(id!=null){
-			if(dto.getUser_id().equals(id) || id.equals("admin")){
-%>
-				<div>
-					<form action="./QnaDelete.qn" method="get" class="deleteQna" align ="right">
-						<input type="button" value="글수정" class="update"
-						onclick="location.href='QnaUpdateForm.qn?qna_num=<%=dto.getQna_num()%>&qna_index=<%=dto.getQna_index()%>'">
-						<input type="hidden" name="qna_num" value="<%=dto.getQna_num()%>">
-						<input type="submit" value="글삭제">
-					</form>
-				</div>
-		</td>
-				<%
-			}
-		}
-		%>
-
->>>>>>> 12ac4a8fdb1c6fe1fd13370bedf3989c0f50b81f
 	<tr>
 		<td colspan="2">
 			<h3>답글</h3>
@@ -161,11 +125,7 @@ String id=(String)session.getAttribute("id");
 		</tr>
 		<%
 		for(int i = 0; i<commList.size(); i++){
-<<<<<<< HEAD
 			int commIndex=1;
-=======
-			int commindex=1;
->>>>>>> 12ac4a8fdb1c6fe1fd13370bedf3989c0f50b81f
 			QnaCommDTO dto2 = commList.get(i);
 		%> 
 			<tr>
@@ -174,13 +134,8 @@ String id=(String)session.getAttribute("id");
 				<td><%=dto2.getComm_content() %></td> 
 				<td><%=dto2.getComm_date() %></td>
 			<%
-<<<<<<< HEAD
 			if(!sessionId.equals("null")){
 				if(sessionId.equals("admin") || dto2.getUser_id().equals(sessionId)) {
-=======
-			if(id!=null){
-				if(id.equals("admin") || dto2.getUser_id().equals(id)) {
->>>>>>> 12ac4a8fdb1c6fe1fd13370bedf3989c0f50b81f
 			%>
 				<td><input type="button" value="수정" 
 					onclick="location.href='./QnaCommUpdateForm.co?qna_num=<%=dto.getQna_num() %>&comm_num=<%=dto2.getComm_num()%>&qna_index=<%=dto.getQna_index()%>'"></td>
@@ -193,16 +148,11 @@ String id=(String)session.getAttribute("id");
 					</form>
 				</td>
 			</tr>
-<<<<<<< HEAD
 		<%
-=======
-			<%
->>>>>>> 12ac4a8fdb1c6fe1fd13370bedf3989c0f50b81f
 				}
 			}
 		}
 		%>
-<<<<<<< HEAD
 	</table>
 <%
 System.out.println("qna_num = "+qna_num );
@@ -289,72 +239,6 @@ if(!sessionId.equals("null")) {
 				} 
 				%>
 			<input type="submit" value="전송" >
-=======
-		
-	</table>
-
-<%
-int pageBlock=10;
-int startPage=(currentPage-1)/pageBlock*pageBlock+1;
-System.out.println("startPage="+startPage);
-int endPage=startPage+pageBlock-1;
-int pageCount = count/pageSize+(count%pageSize==0? 0 : 1);
-System.out.println("pageCount="+pageCount);
-if(endPage > pageCount) {
-	endPage=pageCount;
-}
-// 10페이지 이전
-if(startPage>pageBlock) {
-	%>
-	<a href="QnaContent.qn?qna_num=<%=qna_num %>&pageNum=<%=startPage-pageBlock %>">[10이전]</a>
-	<%
-}
-
-%>
-<div align="center">
-<%
-	// 1페이지 이전
-	if(currentPage != 1) {
-		%>
-		<a href="QnaContent.qn?qna_num=<%=qna_num %>&pageNum=<%=currentPage-1 %>">[이전]</a>
-		<%
-	}
-	for(int i=startPage; i<=endPage; i++){
-		%>
-		<a href="QnaContent.qn?qna_num=<%=qna_num %>&pageNum=<%=i%>"><%=i%></a>
-		<%
-	}
-	
-	// 1페이지 다음
-	if(currentPage < pageCount) {
-		%>
-		<a href="QnaContent.qn?qna_num=<%=qna_num %>&pageNum=<%=currentPage+1 %>">[다음]</a>
-		<%
-	}
-%>
-</div>
-<br>
-<%
-if(id!=null) {
-	if(id.equals("admin") || dto.getUser_id().equals(id)) {
-%>
-		<form action="./QnaCommWritePro.co" method="post" >
-		<input type="hidden" name="qna_num" value="<%=qna_num %>">
-		<input type="hidden" name="user_id" value="<%=id %>">
-		<input type="hidden" name="qna_index" value="<%=dto.getQna_index() %>">
-		<%
-		if(id.equals("admin")) { 
-		%>
-		<textarea name="comm_content" rows="5" cols="70" maxlength="1500"><%=dto.getUser_id() %>님 문의 감사합니다. </textarea>
-			<%
-			}else {
-			%>
-		<textarea name="comm_content" rows="5" cols="70" maxlength="1500"></textarea>
-			<%
-			} 
-			%>
-		<input type="submit" value="전송" >
->>>>>>> 12ac4a8fdb1c6fe1fd13370bedf3989c0f50b81f
 		</form>
 		</td>
 	</tr>
@@ -367,20 +251,12 @@ int nextQnaNum = dao.getNextQna(dto.getQna_num());
 </table>
 <br>
 <% 
-<<<<<<< HEAD
 if(sessionId.equals("admin")){
-=======
-if(id.equals("admin")){
->>>>>>> 12ac4a8fdb1c6fe1fd13370bedf3989c0f50b81f
 	if(beforeQnaNum!=dto.getQna_num()) {
 	%>
 		<a href="QnaContent.qn?qna_num=<%=beforeQnaNum	%>&qna_index=<%=dto.getQna_index()-1 %>">이전글</a>
 	<%
-<<<<<<< HEAD
 	}
-=======
-		}
->>>>>>> 12ac4a8fdb1c6fe1fd13370bedf3989c0f50b81f
 	%>
 	<% 
 	if(nextQnaNum !=dto.getQna_num()) {

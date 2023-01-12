@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<<<<<<< HEAD
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3.1.xsd"
@@ -102,43 +101,4 @@
 		<servlet-name>MainPageFrontController </servlet-name>
 		<url-pattern>*.ma</url-pattern>
 	</servlet-mapping>
-=======
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3.1.xsd" id="WebApp_ID" version="3.1">
-  <display-name>Project</display-name>
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-  </welcome-file-list>
-  
-  <servlet>
-    <servlet-name>QnaFrontController</servlet-name>
-    <servlet-class>com.itwillbs.qna.action.QnaFrontController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>QnaFrontController</servlet-name>
-    <url-pattern>*.qn</url-pattern>
-  </servlet-mapping>
-  
-  <servlet>
-    <servlet-name>QnaCommFrontController</servlet-name>
-    <servlet-class>com.itwillbs.qna_comm.action.QnaCommFrontController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>QnaCommFrontController</servlet-name>
-    <url-pattern>*.co</url-pattern>
-  </servlet-mapping>
-  
-    <servlet>
-    <servlet-name>CarInfoFrontController</servlet-name>
-    <servlet-class>com.itwillbs.carinfo.action.CarInfoFrontController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>CarInfoFrontController</servlet-name>
-    <url-pattern>*.ci</url-pattern>
-  </servlet-mapping>
->>>>>>> 12ac4a8fdb1c6fe1fd13370bedf3989c0f50b81f
 </web-app>

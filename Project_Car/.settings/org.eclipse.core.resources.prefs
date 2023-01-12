@@ -1,3 +1,6 @@
 eclipse.preferences.version=1
+encoding//src/main/java/com/qna/action/QnaFrontController.java=UTF-8
+encoding//src/main/java/com/qna/db/QnaDAO.java=UTF-8
+encoding//src/main/java/com/qna_comm/action/QnaCommFrontController.java=UTF-8
 encoding//src/main/java/com/user/action/UserFrontController.java=UTF-8
-encoding/<project>=x-windows-949
+encoding/<project>=UTF-8

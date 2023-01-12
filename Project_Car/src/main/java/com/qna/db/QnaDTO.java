@@ -66,11 +66,4 @@ public class QnaDTO {
 	public void setQna_index(int qna_index) {
 		this.qna_index = qna_index;
 	}
-	
-<<<<<<< HEAD
-=======
-	
-	
-
->>>>>>> 12ac4a8fdb1c6fe1fd13370bedf3989c0f50b81f
 }

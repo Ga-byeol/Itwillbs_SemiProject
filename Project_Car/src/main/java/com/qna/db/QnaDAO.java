@@ -28,10 +28,6 @@ public class QnaDAO {
 		return con;
 	}
 	
-<<<<<<< HEAD
-=======
-	
->>>>>>> 12ac4a8fdb1c6fe1fd13370bedf3989c0f50b81f
 	public void close() {
 		if(con!=null) try{con.close();}catch(SQLException ex) {}
 		if(pstmt!=null) try{pstmt.close();}catch(SQLException ex) {}
@@ -48,11 +44,8 @@ public class QnaDAO {
 			
 			int qna_num=0;
 			if(rs.next()) {
-<<<<<<< HEAD
 				qna_num=rs.getInt("max(qna_num)")+1;
-=======
-				qna_num=rs.getInt("max(qna_num)")+1; // max(num)은 컬럼명
->>>>>>> 12ac4a8fdb1c6fe1fd13370bedf3989c0f50b81f
+				qna_num=rs.getInt("max(qna_num)")+1; // max(num)�� 而щ읆紐�
 			}
 			String sql="insert into qna(qna_num, user_id, qna_sub, qna_content, qna_readcount, qna_date, qna_secret, qna_image) value(?,?,?,?,?,?,?,?)";
 			pstmt =con.prepareStatement(sql);
@@ -166,12 +159,6 @@ public class QnaDAO {
 			pstmt.setString(1, dto.getQna_sub());
 			pstmt.setString(2, dto.getQna_content());
 			pstmt.setString(3, dto.getQna_secret());
-<<<<<<< HEAD
-
-=======
-			// 새로운 파일이 업로드되면 업로드된 파일명으로 수정 /
-			// 기존 파일을 사용하면 기존파일명으로 다시 입력
->>>>>>> 12ac4a8fdb1c6fe1fd13370bedf3989c0f50b81f
 			if(imageChange) {
 				pstmt.setString(4, dto.getQna_image());
 			} else {
@@ -224,11 +211,7 @@ public class QnaDAO {
 			pstmt=con.prepareStatement(sql);
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
-<<<<<<< HEAD
 				count=rs.getInt("count(*)"); 
-=======
-				count=rs.getInt("count(*)"); // 열이름 count(*)
->>>>>>> 12ac4a8fdb1c6fe1fd13370bedf3989c0f50b81f
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

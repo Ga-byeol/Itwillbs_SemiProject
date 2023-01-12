@@ -17,14 +17,6 @@ String sessionId=(String)session.getAttribute("sessionId");
 int qna_index=Integer.parseInt(request.getParameter("qna_index"));
 
 if(sessionId==null || !sessionId.equals(dto.getUser_id())){
-=======
-<jsp:include page="../css/header.jsp"></jsp:include>
-<%
-QnaCommDTO dto=(QnaCommDTO)request.getAttribute("dto");
-String id=(String)session.getAttribute("id");
-int qna_index=Integer.parseInt(request.getParameter("qna_index"));
-if(id==null || !id.equals(dto.getUser_id())){
->>>>>>> 12ac4a8fdb1c6fe1fd13370bedf3989c0f50b81f
 	response.sendRedirect("./QnaList.qn");
 }
 %>

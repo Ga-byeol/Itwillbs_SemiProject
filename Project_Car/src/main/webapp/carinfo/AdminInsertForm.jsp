@@ -1,4 +1,3 @@
-<%@page import="com.itwillbs.carinfo.db.CarInfoDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  

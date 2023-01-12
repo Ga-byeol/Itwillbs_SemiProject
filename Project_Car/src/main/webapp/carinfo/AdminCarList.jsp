@@ -1,4 +1,4 @@
-<%@page import="com.itwillbs.carinfo.db.CarInfoDTO"%>
+<%@page import="com.car.db.CarInfoDTO"%>
 <%@page import="javax.swing.plaf.synth.SynthOptionPaneUI"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"

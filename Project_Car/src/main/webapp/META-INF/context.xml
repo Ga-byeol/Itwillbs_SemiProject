@@ -2,7 +2,6 @@
 <Context> 
 
 <Resource name="jdbc/Mysql"
-<<<<<<< HEAD
 		 auth="Container"
 		 type="javax.sql.DataSource"
 		 driverClassName="com.mysql.cj.jdbc.Driver"
@@ -22,14 +21,3 @@
 		 password="1234"
 		 /> 
 -->
-=======
-		  auth="Container"
-		  type="javax.sql.DataSource"
-		  driverClassName="com.mysql.cj.jdbc.Driver"
-		  url="jdbc:mysql://db.itwillbs.dev:3306/class2_220922_team1?serverTimezone=Asia/Seoul"
-		  username="class2_220922_team1"
-		  password="1234"
-		  />
-
-</Context>
->>>>>>> 12ac4a8fdb1c6fe1fd13370bedf3989c0f50b81f

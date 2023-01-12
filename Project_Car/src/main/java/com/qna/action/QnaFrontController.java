@@ -11,14 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 public class QnaFrontController extends HttpServlet{
 
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-<<<<<<< HEAD
+		
 		String strpath=request.getServletPath();
 		System.out.println("strpath : "+strpath);
-=======
-
-		String strpath=request.getServletPath();
-		System.out.println("뽑은 주소 strpath : "+strpath);
->>>>>>> 12ac4a8fdb1c6fe1fd13370bedf3989c0f50b81f
 		
 		ActionForward forward=null;
 		Action action=null;
@@ -69,23 +64,21 @@ public class QnaFrontController extends HttpServlet{
 				e.printStackTrace();
 			}
 		}
-<<<<<<< HEAD
 		if(forward!=null) {
 			if(forward.isRedirect()) {
 				response.sendRedirect(forward.getPath());
 			}else {
-=======
-		// 이동
 		if(forward!=null) {
 			if(forward.isRedirect()) {
-				//true : 주소변경 되면서 이동
+				//true : 二쇱냼蹂�寃� �릺硫댁꽌 �씠�룞
 				response.sendRedirect(forward.getPath());
 			}else {
-				// false : 주소변경 안되면서 이동
->>>>>>> 12ac4a8fdb1c6fe1fd13370bedf3989c0f50b81f
+				// false : 二쇱냼蹂�寃� �븞�릺硫댁꽌 �씠�룞
 				RequestDispatcher dis
 				= request.getRequestDispatcher(forward.getPath());
 				dis.forward(request, response);
+			}
+		}
 			}
 		}
 	}
