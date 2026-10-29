@@ -59,7 +59,7 @@ if(id != null) {
  %>
 
 	<div id="wrapper">
-		<!-- 대가리 -->
+		<!-- 헤더 / 네비게이션 영역 -->
 		<header class="nav-menu">
 			<div>
 				<a href="#"><img class="logo" src="https://www.busan.go.kr/humanframe/theme/busan22/assets/img/main/svg/logo01_w.svg"></a>

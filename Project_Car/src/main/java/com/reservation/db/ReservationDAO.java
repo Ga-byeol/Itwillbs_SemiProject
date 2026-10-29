@@ -19,12 +19,9 @@ public class ReservationDAO {
 	
 	private Connection getConnect() {
 		try {
-			// 1-1. 프로젝트 정보 초기화
 			Context initCTX = new InitialContext();
-			// 1-2. 초기화된 프로젝트 중 데이터 관련 정보 불러오기
-			DataSource ds = (DataSource) initCTX.lookup("java:comp/env/jdbc/cafe_pcc");
+			DataSource ds = (DataSource) initCTX.lookup("java:comp/env/jdbc/Mysql");
 			con = ds.getConnection();
-
 		} catch (NamingException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
@@ -36,7 +33,7 @@ public class ReservationDAO {
 	public void insertReservation(String uid, String carNum, String stime, int time, String userId) {
 		try {
 			con = getConnect();
-			sql = "insert into reservation(res_num, res_car_num, res_stime, res_time, user_num)"
+			sql = "insert into reservation(res_num, res_car_num, res_stime, res_time, user_num) "
 				+ "values(?, ?, ?, ?, ?)";
 			
 			pstmt = con.prepareStatement(sql);
@@ -45,7 +42,7 @@ public class ReservationDAO {
 			pstmt.setString(2, carNum);
 			pstmt.setString(3, stime.split(" ~ ")[0]);
 			pstmt.setInt(4, time);
-			pstmt.setString(4, userId);
+			pstmt.setString(5, userId);
 			
 			pstmt.executeUpdate();
 		} catch (Exception e) {

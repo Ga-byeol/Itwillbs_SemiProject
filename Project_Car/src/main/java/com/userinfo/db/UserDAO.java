@@ -15,33 +15,23 @@ public class UserDAO {
 	ResultSet rs = null;
 	
 	public Connection getConnection() throws Exception {
-		
-		
 		Context init = new InitialContext();
-		
-		DataSource ds = (DataSource)init.lookup("java:comp/env/jdbc/Mysql");
-		
-		con=ds.getConnection();
+		DataSource ds = (DataSource) init.lookup("java:comp/env/jdbc/Mysql");
+		con = ds.getConnection();
 		return con;
 	}
 	
 	public void close() {
-		if(rs != null) try{rs.close();}catch(SQLException ex) {}
-		if(pstmt != null) try{pstmt.close();}catch(SQLException ex) {}
-		if(con != null) try{con.close();}catch(SQLException ex) {}
-		
+		if (rs != null) try { rs.close(); } catch (SQLException ex) {}
+		if (pstmt != null) try { pstmt.close(); } catch (SQLException ex) {}
+		if (con != null) try { con.close(); } catch (SQLException ex) {}
 	}
 	
-	// insertFirst(BoardDTO dto)
 	public void insertUserinfo(UserDTO dto) {
-		System.out.println("UserDTO : " + dto);
 		try {
-			con=getConnection();
-			
-			String sql="insert into userinfo(user_id,user_pass,user_name) values(?,?,?)";
+			con = getConnection();
+			String sql = "insert into userinfo(user_id, user_pass, user_name, user_hp, email, address, user_pt, license_num, license_type) values(?,?,?,?,?,?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
-			pstmt.executeUpdate();
-			
 			pstmt.setString(1, dto.getUser_id());
 			pstmt.setString(2, dto.getUser_pass());
 			pstmt.setString(3, dto.getUser_name());
@@ -51,88 +41,78 @@ public class UserDAO {
 			pstmt.setInt(7, dto.getUser_pt());
 			pstmt.setString(8, dto.getLicense_num());
 			pstmt.setString(9, dto.getLicense_type());
-			
-		}catch (Exception e) {
+			pstmt.executeUpdate();
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
-			
+		} finally {
+			close();
 		}
-		return;
 	}
 	
-	 public UserDTO UserCheck(String user_id, String user_pass) {
-         UserDTO dto = null;
-         try {
-            con = getConnection();
-            String sql="select * from userinfo where user_id=? and user_pass=?";
-            pstmt = con.prepareStatement(sql);
-            pstmt.setString(1, user_id);
-            pstmt.setString(2, user_pass);
-            ResultSet rs = pstmt.executeQuery();
-            
-            if(rs.next()){
-               dto = new UserDTO();
-               dto.setUser_id(rs.getString("user_id"));
-               dto.setUser_pass(rs.getString("user_pass"));
-            }else{
-               
-            }
-         } catch (Exception e) {
-            e.printStackTrace();
-         }finally {
-            
-         }
-         return dto;
-      }
-	public UserDTO getUserinfo(String user_id) {
+	public UserDTO UserCheck(String user_id, String user_pass) {
 		UserDTO dto = null;
-		
 		try {
 			con = getConnection();
-			String sql="select * from userinfo where user_id=?";
+			String sql = "select * from userinfo where user_id=? and user_pass=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, user_id);
-//			pstmt.setString(2, dto.getUser_pass());
-//			pstmt.setString(3, dto.getUser_name());
-//			pstmt.setString(4, dto.getUser_hp());
-//			pstmt.setString(5, dto.getEmail());
-//			pstmt.setString(6, dto.getAddress());
-//			pstmt.setInt(7, dto.getUser_pt());
-//			pstmt.setString(8, dto.getLicense_num());
-//			pstmt.setString(9, dto.getLicense_type());
+			pstmt.setString(2, user_pass);
+			rs = pstmt.executeQuery();
 			
-			
-			
-			rs=pstmt.executeQuery();
-			
-			if(rs.next()) {
-				
+			if (rs.next()) {
 				dto = new UserDTO();
-				
 				dto.setUser_id(rs.getString("user_id"));
 				dto.setUser_pass(rs.getString("user_pass"));
 				dto.setUser_name(rs.getString("user_name"));
-				
-			}else {
-				
+				dto.setUser_hp(rs.getString("user_hp"));
+				dto.setEmail(rs.getString("email"));
+				dto.setAddress(rs.getString("address"));
+				dto.setLicense_num(rs.getString("license_num"));
+				dto.setLicense_type(rs.getString("license_type"));
+				dto.setUser_pt(rs.getInt("user_pt"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		
-		}finally {
-			
+		} finally {
+			close();
 		}
-		System.out.println(dto);
+		return dto;
+	}
+
+	public UserDTO getUserinfo(String user_id) {
+		UserDTO dto = null;
+		try {
+			con = getConnection();
+			String sql = "select * from userinfo where user_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, user_id);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				dto = new UserDTO();
+				dto.setUser_id(rs.getString("user_id"));
+				dto.setUser_pass(rs.getString("user_pass"));
+				dto.setUser_name(rs.getString("user_name"));
+				dto.setUser_hp(rs.getString("user_hp"));
+				dto.setEmail(rs.getString("email"));
+				dto.setAddress(rs.getString("address"));
+				dto.setUser_birth(rs.getString("user_birth"));
+				dto.setLicense_num(rs.getString("license_num"));
+				dto.setLicense_type(rs.getString("license_type"));
+				dto.setUser_pt(rs.getInt("user_pt"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
 		return dto;
 	}
 	
 	public void updateUserinfo(UserDTO dto) {
-		System.out.println("FirstDAO updateFirst");
-		System.out.println("dto " + dto);
-		
 		try {
 			con = getConnection();
-			String sql = "update userinfo set user_name=? ,user_pass=? ,user_hp=?, email=?, address=?,license_num=?, license_type=?   where user_id =?";
+			String sql = "update userinfo set user_name=?, user_pass=?, user_hp=?, email=?, address=?, license_num=?, license_type=? where user_id=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, dto.getUser_name());
 			pstmt.setString(2, dto.getUser_pass());
@@ -142,42 +122,25 @@ public class UserDAO {
 			pstmt.setString(6, dto.getLicense_num());
 			pstmt.setString(7, dto.getLicense_type());
 			pstmt.setString(8, dto.getUser_id());
-			
 			pstmt.executeUpdate();
-			
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
-			
+		} finally {
+			close();
 		}
-		return;
-		
 	}
 	
 	public void deleteUserinfo(UserDTO dto) {
-		
 		try {
 			con = getConnection();
-			
-			String sql="delete from userinfo where user_id=?";
-			pstmt=con.prepareStatement(sql);
+			String sql = "delete from userinfo where user_id=?";
+			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, dto.getUser_id());
-//			pstmt.setString(2, dto.getUser_pass());
-//			pstmt.setString(3, dto.getUser_name());
-//			pstmt.setString(4, dto.getUser_hp());
-//			pstmt.setString(5, dto.getEmail());
-//			pstmt.setString(6, dto.getAddress());
-//			pstmt.setInt(7, dto.getUser_pt());
-//			pstmt.setString(8, dto.getLicense_num());
-//			pstmt.setString(9, dto.getLicense_type());
 			pstmt.executeUpdate();
-			
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
-			
+		} finally {
+			close();
 		}
-		return;
 	}
-
 }

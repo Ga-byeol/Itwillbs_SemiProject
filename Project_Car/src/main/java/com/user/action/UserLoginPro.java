@@ -30,6 +30,7 @@ public class UserLoginPro implements Action{
 			
 			HttpSession session = request.getSession();
 			session.setAttribute("sessionId", sessionId);
+			session.setAttribute("user_id", sessionId);
 			session.setAttribute("user_pass", user_pass);
 			session.setAttribute("address", dto.getAddress());
 			session.setAttribute("email", dto.getEmail());

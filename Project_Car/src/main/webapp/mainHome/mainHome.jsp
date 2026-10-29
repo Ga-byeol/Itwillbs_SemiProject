@@ -100,7 +100,7 @@ if(user_id != null) {
 }
 %>
 	<div id="wrapper">
-		<!-- 대가리 -->
+		<!-- 헤더 / 네비게이션 영역 -->
 		<header class="nav-menu">
 			<div>
 				<a href="mainHome.jsp"><img class="logo" src="./car_images/카차차.png"></a>
