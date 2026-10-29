@@ -96,35 +96,35 @@ FrontController가 모든 클라이언트 요청(`*.us`, `*.ci`, `*.res` 등)을
 
 ```mermaid
 flowchart LR
-    Client([사용자 브라우저]) -->|요청 *.res, *.ci| FC[FrontController 서블릿]
-    FC -->|Command 패턴 매핑| Action[Action 비즈니스 로직]
-    Action -->|결제/예약 데이터 CRUD| DAO[ReservationDAO / CarDAO]
-    DAO -->|DBCP JNDI| DB[(MySQL DB)]
-    DB -->|결과 반환| DAO
-    DAO -->|DTO 리턴| Action
-    Action -->|ActionForward (Path, Redirect 여부)| FC
-    FC -->|RequestDispatcher / Redirect| JSP[JSP View 화면]
-    JSP -->|HTML 렌더링| Client
+    Client["사용자 브라우저"] -->|"요청 (*.res, *.ci)"| FC["FrontController 서블릿"]
+    FC -->|"Command 패턴 매핑"| Action["Action 비즈니스 로직"]
+    Action -->|"결제/예약 데이터 CRUD"| DAO["ReservationDAO / CarDAO"]
+    DAO -->|"DBCP JNDI"| DB[("MySQL DB")]
+    DB -->|"결과 반환"| DAO
+    DAO -->|"DTO 리턴"| Action
+    Action -->|"ActionForward (이동 경로 및 방식)"| FC
+    FC -->|"RequestDispatcher / Redirect"| JSP["JSP View 화면"]
+    JSP -->|"HTML 렌더링"| Client
 ```
 
 ### 전체 서비스 흐름도
 ```mermaid
 flowchart TD
-    Start([방문자]) --> Login{로그인 여부}
-    Login -->|미인증| Join[회원가입 / 로그인]
-    Login -->|인증완료| Main[메인 페이지]
+    Start(["방문자"]) --> Login{"로그인 여부"}
+    Login -->|"미인증"| Join["회원가입 / 로그인"]
+    Login -->|"인증완료"| Main["메인 페이지"]
 
-    Main --> CarList[차량 목록 조회 및 필터링]
-    CarList --> Detail[차량 상세 정보 확인]
-    Detail --> Reserve[예약 일정/시간 선택]
-    Reserve --> PayForm[결제 확인 및 포인트 사용 입력]
-    PayForm --> Iamport[아임포트 PG 결제창]
+    Main --> CarList["차량 목록 조회 및 필터링"]
+    CarList --> Detail["차량 상세 정보 확인"]
+    Detail --> Reserve["예약 일정/시간 선택"]
+    Reserve --> PayForm["결제 확인 및 포인트 사용 입력"]
+    PayForm --> Iamport["아임포트 PG 결제창"]
 
-    Iamport -->|결제 성공| ResSuccess[예약 완료 & DB 저장 & 10% 포인트 적립]
-    Iamport -->|결제 취소| ResFail[결제 실패 안내 및 복귀]
+    Iamport -->|"결제 성공"| ResSuccess["예약 완료 및 DB 저장 (10% 포인트 적립)"]
+    Iamport -->|"결제 취소"| ResFail["결제 실패 안내 및 복귀"]
 
-    ResSuccess --> MyPage[마이페이지 - 나의 예약 조회]
-    MyPage --> Review[이용 후기 작성 및 별점 등록]
+    ResSuccess --> MyPage["마이페이지 - 나의 예약 조회"]
+    MyPage --> Review["이용 후기 작성 및 별점 등록"]
 ```
 
 ---
